@@ -13,9 +13,6 @@ database/
 !*.env.example
 backend/.env
 backend/.env.production
-backend/onec-config.yml
-onec-config.yml
-
 # Build artifacts
 dist/
 coverage/

@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { config } from "../config.js";
-import { forwardMaxWebhookUpdateToOneC } from "../services/onecRouter.js";
+import { enqueueIncomingMaxUpdate } from "../services/messageQueue.js";
 import { sendApiError } from "../utils/apiErrors.js";
 
 function getHeaderValue(value) {
@@ -38,14 +38,6 @@ function isObjectPayload(payload) {
     return Boolean(payload) && typeof payload === "object" && !Array.isArray(payload);
 }
 
-function isConfigurationError(error) {
-    const message = error?.message || "";
-
-    return message.startsWith("onec_config_")
-        || message === "onec_config_not_found"
-        || message === "max_bot_id_missing";
-}
-
 export async function maxWebhookRoutes(app) {
     app.post("/api/v1/max/webhook", async (req, reply) => {
         const secretHeader = req.headers["x-max-bot-api-secret"];
@@ -64,28 +56,27 @@ export async function maxWebhookRoutes(app) {
         }
 
         try {
-            await forwardMaxWebhookUpdateToOneC(req.body);
+            const queuedMessage = await enqueueIncomingMaxUpdate(req.body);
 
             req.log.info({
                 endpoint: "/api/v1/max/webhook",
                 updateType: req.body.update_type || null,
-            }, "MAX webhook forwarded to 1C");
+                messageId: queuedMessage.id,
+            }, "MAX webhook queued for 1C polling");
 
             return {
                 ok: true,
+                queued: true,
+                message_id: queuedMessage.id,
             };
         } catch (error) {
             req.log.error({
                 endpoint: "/api/v1/max/webhook",
                 updateType: req.body.update_type || null,
                 err: error,
-            }, "Failed to forward MAX webhook to 1C");
+            }, "Failed to queue MAX webhook");
 
-            if (isConfigurationError(error)) {
-                return sendApiError(reply, 503, "onec_webhook_target_not_configured");
-            }
-
-            return sendApiError(reply, 502, "onec_webhook_forward_failed");
+            return sendApiError(reply, 503, "max_webhook_queue_failed");
         }
     });
 }

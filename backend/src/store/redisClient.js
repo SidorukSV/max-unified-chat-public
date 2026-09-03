@@ -95,6 +95,18 @@ class RedisClient {
         return this.send(["DEL", key]);
     }
 
+    async rpush(key, value) {
+        return this.send(["RPUSH", key, value]);
+    }
+
+    async lpop(key) {
+        return this.send(["LPOP", key]);
+    }
+
+    async llen(key) {
+        return this.send(["LLEN", key]);
+    }
+
     async quit() {
         if (!this.connected) return;
 

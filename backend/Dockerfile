@@ -6,7 +6,6 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY src ./src
-COPY onec-config.example.yml ./onec-config.example.yml
 
 ARG APP_VERSION=1.0.0
 ARG BACKEND_VERSION=1.0.0

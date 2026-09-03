@@ -21,19 +21,12 @@ services:
       NODE_ENV: production
       PORT: 3000
       REDIS_URL: redis://redis:6379
-      ONEC_CONFIG_FILE: /app/onec-config.yml
       BACKEND_LOG_FILE: /app/logs/backend.log
       BACKEND_LOG_LEVEL: ${BACKEND_LOG_LEVEL:-info}
     depends_on:
       - redis
     volumes:
       - ./logs:/app/logs
-      - type: bind
-        source: ./backend/onec-config.yml
-        target: /app/onec-config.yml
-        read_only: true
-        bind:
-          create_host_path: false
 
   gateway:
     image: nginx:1.27-alpine

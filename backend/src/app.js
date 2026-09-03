@@ -2,13 +2,9 @@ import fs from "fs";
 import path from "path";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { config, oneCConfigLoadDiagnostics } from "./config.js";
-import { authRoutes } from "./routes/auth.js";
-import { meRoutes } from "./routes/me.js";
-import { logsRoutes } from "./routes/logs.js";
-import { catalogsRoutes } from "./routes/catalogs.js";
-import { documentsRoutes } from "./routes/documents.js";
+import { config } from "./config.js";
 import { maxWebhookRoutes } from "./routes/maxWebhook.js";
+import { onecExchangeRoutes } from "./routes/onecExchange.js";
 import { versionRoutes } from "./routes/version.js";
 
 function buildLoggerOptions() {
@@ -29,14 +25,6 @@ function buildLoggerOptions() {
     };
 }
 
-function logOneCConfigDiagnostics(app) {
-    for (const diagnostic of oneCConfigLoadDiagnostics) {
-        const { level = "info", ...payload } = diagnostic;
-        const safeLevel = typeof app.log[level] === "function" ? level : "info";
-        app.log[safeLevel](payload, "1C config load diagnostic");
-    }
-}
-
 export async function buildApp() {
     const localhostOrigins = [
         "http://localhost:3000",
@@ -53,8 +41,6 @@ export async function buildApp() {
     const app = Fastify({
         logger: buildLoggerOptions(),
     });
-
-    logOneCConfigDiagnostics(app);
 
     await app.register(cors, {
         origin(origin, cb) {
@@ -103,12 +89,8 @@ export async function buildApp() {
         reply.header("Referrer-Policy", "strict-origin-when-cross-origin");
     });
 
-    app.register(authRoutes);
-    app.register(meRoutes);
-    app.register(logsRoutes);
-    app.register(catalogsRoutes);
-    app.register(documentsRoutes);
     app.register(maxWebhookRoutes);
+    app.register(onecExchangeRoutes);
     app.register(versionRoutes);
     app.get("/healthz", async () => ({ status: "ok" }));
 

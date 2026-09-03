@@ -1,6 +1,6 @@
 # Развертывание Единого чата MAX на Debian через Docker
 
-Инструкция предназначена для отдельного backend/API-приложения Единого чата и рассылок.
+Инструкция предназначена для backend/API-приложения Единого чата и рассылок.
 
 ## 1. Требования
 
@@ -9,8 +9,8 @@
 - Открытые входящие порты `80` и `443`.
 - Docker Engine и Docker Compose plugin.
 - Доверенный TLS-сертификат для домена.
-- Опубликованный HTTP-сервис 1С, доступный с VDS.
-- Токен бота MAX и webhook secret.
+- Токен бота MAX.
+- Сервисный ключ для обмена 1С ↔ VDS.
 
 ## 2. Установка Docker
 
@@ -34,7 +34,6 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 git clone https://github.com/SidorukSV/max-unified-chat-public.git
 cd max-unified-chat-public
 cp backend/.env.production.example backend/.env.production
-cp backend/onec-config.example.yml backend/onec-config.yml
 mkdir -p deploy/certs logs
 ```
 
@@ -43,25 +42,40 @@ mkdir -p deploy/certs logs
 Откройте `backend/.env.production` и заполните значения:
 
 ```env
-JWT_SECRET=replace_with_strong_random_secret
+ONEC_API_KEY=replace_with_strong_random_service_key
 MAX_WEBHOOK_SECRET=replace_with_max_webhook_secret
 MAX_BOT_TOKEN=replace_with_max_bot_token
 MAX_WEBHOOK_URL=https://chat.example.com/api/v1/max/webhook
 CORS_ALLOWED_ORIGINS=https://chat.example.com
 ```
 
-`JWT_SECRET` должен быть случайной строкой не короче 32 символов.
+Рекомендации:
 
-## 5. Настройка подключения к 1С
+- `ONEC_API_KEY` должен быть длинной случайной строкой, известной только 1С и backend.
+- `MAX_WEBHOOK_SECRET` должен совпадать с секретом webhook-подписки MAX.
+- `MAX_BOT_TOKEN` не передавать в 1С, если 1С отправляет сообщения только через backend.
 
-Откройте `backend/onec-config.yml`:
+## 5. Настройка обмена в 1С
 
-```yaml
-url: "https://example.com/base/hs/omni/v1"
-basicAuth: "base64_login_password"
+В 1С нужно настроить регламентное задание, которое вызывает:
+
+```text
+GET https://chat.example.com/api/v1/onec/messages/incoming?limit=50
 ```
 
-`url` — полный корень HTTP-сервиса 1С, включая имя базы и `/hs/omni/v1`.
+с заголовком:
+
+```http
+X-Onec-Api-Key: <ONEC_API_KEY>
+```
+
+Исходящие сообщения из 1С отправляются методом:
+
+```text
+POST https://chat.example.com/api/v1/onec/messages/outgoing
+```
+
+Формат payload описан в `ONEC-API.MD`.
 
 ## 6. TLS-сертификаты
 
@@ -86,6 +100,13 @@ curl https://chat.example.com/healthz
 curl https://chat.example.com/api/v1/version
 ```
 
+Проверка polling API:
+
+```bash
+curl "https://chat.example.com/api/v1/onec/messages/incoming?limit=1" \
+  -H "X-Onec-Api-Key: ${ONEC_API_KEY}"
+```
+
 ## 8. Подключение webhook MAX
 
 После запуска backend выполните:
@@ -105,7 +126,7 @@ docker compose up -d --build
 docker compose logs -f backend
 ```
 
-Если менялись настройки 1С или секреты, отредактируйте `backend/.env.production` и `backend/onec-config.yml`, затем перезапустите:
+Если менялись секреты или домен, отредактируйте `backend/.env.production`, затем перезапустите:
 
 ```bash
 docker compose restart backend

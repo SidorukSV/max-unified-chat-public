@@ -32,11 +32,9 @@
 
 ```bash
 cp backend/.env.production.example backend/.env.production
-cp backend/onec-config.example.yml backend/onec-config.yml
 
-# заполнить секреты и URL 1С
+# заполнить секреты MAX и сервисный ключ 1С
 nano backend/.env.production
-nano backend/onec-config.yml
 
 docker compose up -d --build
 ```

@@ -1,15 +1,12 @@
 import { buildApp } from "./app.js";
 import { config } from "./config.js";
 import { closeRedisClient, getRedisClient } from "./store/redisClient.js";
-import { finishOneCSessions, startOneCSessions } from "./services/onecRouter.js";
 
 const app = await buildApp();
 
 await getRedisClient();
-await startOneCSessions();
 
 app.addHook("onClose", async () => {
-    await finishOneCSessions();
     await closeRedisClient();
 });
 

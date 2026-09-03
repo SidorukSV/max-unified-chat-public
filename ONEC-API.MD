@@ -1,188 +1,194 @@
-# ONEC API
+# API обмена 1С ↔ VDS
 
-## Базовый URL HTTP-сервиса 1С
+Backend работает как публичный шлюз между MAX и 1С:
 
-В `backend/onec-config.yml` указывается полный корень опубликованного HTTP-сервиса, включая имя базы и `/hs/omni/v1`:
+1. MAX отправляет webhook на VDS.
+2. Backend проверяет секрет webhook и кладёт событие в Redis-очередь.
+3. 1С регламентным заданием забирает входящие сообщения из backend.
+4. 1С отправляет исходящие сообщения в backend.
+5. Backend вызывает MAX Bot API `POST /messages`.
 
-```yaml
-url: "https://example.com/base/hs/omni/v1"
-basicAuth: "base64_login_password"
+## Авторизация 1С
+
+Все методы `/api/v1/onec/*` требуют сервисный ключ.
+
+Можно передать ключ одним из способов:
+
+```http
+X-Onec-Api-Key: <ONEC_API_KEY>
 ```
 
-Backend добавляет к этому значению пути конкретных методов.
+или:
 
-## Настройки видимости страниц
+```http
+Authorization: Bearer <ONEC_API_KEY>
+```
 
-### `GET /settings`
+Секрет задаётся в `backend/.env.production`:
 
-Backend запрашивает этот метод 1С при загрузке профиля пользователя.
+```env
+ONEC_API_KEY=replace_with_strong_random_service_key
+```
 
-#### Ответ
+## Входящие сообщения MAX для 1С
+
+### `GET /api/v1/onec/messages/incoming`
+
+1С вызывает метод по расписанию и забирает пачку входящих событий.
+
+Параметры:
+
+- `limit` — максимальное количество сообщений за один вызов. По умолчанию `ONEC_POLL_DEFAULT_LIMIT`, верхняя граница `ONEC_POLL_MAX_LIMIT`.
+
+Пример:
+
+```bash
+curl "https://chat.example.com/api/v1/onec/messages/incoming?limit=50" \
+  -H "X-Onec-Api-Key: ${ONEC_API_KEY}"
+```
+
+Ответ:
 
 ```json
 {
-  "visibility_pages": {
-    "bonuses": true,
-    "survey": true
-  }
-}
-```
-
-- `bonuses` управляет видимостью страницы и элементов интерфейса бонусов.
-- `survey` управляет видимостью списка, карточек и страниц анкет.
-- Только явное значение `false` отключает страницу. Отсутствующие или некорректные значения считаются `true` для обратной совместимости.
-
-Соответствие настройкам 1С:
-
-- `bonuses` — `бит_омни_Настройки.Идентификатор = "ВыводитьБонусы"`;
-- `survey` — `бит_омни_Настройки.Идентификатор = "ВыводитьАнкеты"`.
-
-## Авторизация для 1C
-
-### `POST /api/v1/auth/onec`
-
-Отдельный метод авторизации для интеграции 1C. Используется тот же JWT-механизм, что и для остальных каналов (access + refresh token), но канал фиксирован как `channel=1c`.
-
-#### Входной payload
-
-```json
-{
-  "proof": {
-    "totp_code": "123456"
-  },
-  "device_id": "onec-sync-worker-01"
-}
-```
-
-- `proof.totp_code` — обязательный TOTP код.
-- TOTP секрет берётся из единственного конфига 1C: `onecTotpSecret`.
-- Применяется анти-брутфорс защита: лимит попыток и временный lockout. При неверном proof возвращается унифицированная ошибка `auth_attempt_failed`, при превышении лимита — `auth_rate_limited` (429 + `Retry-After`).
-
-#### Успешный ответ
-
-```json
-{
-  "access_token": "<jwt>",
-  "refresh_token": "<jwt>",
-  "expires_in": 900,
-  "channel": "1c"
-}
-```
-
-## Загрузка каталога категорий из 1C
-
-### `POST /api/v1/catalogs/categories/`
-
-Метод принимает структуру категории из 1C и сохраняет её в Redis для дальнейшей реализации умного поиска.
-
-Требования:
-- `Authorization: Bearer <access_token>` обязателен.
-- Токен должен быть выпущен через `POST /api/v1/auth/onec` и содержать `channel=1c`.
-
-#### Входной payload
-
-```json
-{
-  "categoryId": "00000000-0000-0000-0000-000000000000",
-  "appointment_type": "online",
-  "isCartAllow": true,
-  "isDateRequired": true,
-  "isDoctorRequired": true,
-  "employees": [
+  "messages": [
     {
-      "doctorId": "00000000-0000-0000-0000-000000000001",
-      "doctorTitle": "Врач",
-      "doctorLastname": "Иванов",
-      "doctorFirstname": "Иван",
-      "doctorPatronymic": "Иванович",
-      "doctorDuration": 30,
-      "specializations": [
-        "00000000-0000-0000-0000-000000000010"
-      ]
+      "id": "9aebd640-c52a-4f3d-a216-b9b6c5efb928",
+      "received_at": "2026-09-03T13:00:00.000Z",
+      "source": "max_webhook",
+      "update_type": "message_created",
+      "update": {
+        "update_type": "message_created"
+      }
     }
   ],
-  "specializations": [
+  "remaining": 0
+}
+```
+
+`update` содержит исходный объект `Update` от MAX без изменений.
+
+## Исходящие сообщения из 1С в MAX
+
+### `POST /api/v1/onec/messages/outgoing`
+
+1С передаёт одно сообщение или пачку сообщений. Backend отправляет их в MAX Bot API `POST /messages`.
+
+Одинарный payload:
+
+```json
+{
+  "client_message_id": "onec-message-0001",
+  "user_id": 123456789,
+  "text": "Здравствуйте",
+  "notify": true
+}
+```
+
+Пачка:
+
+```json
+{
+  "messages": [
     {
-      "specializationId": "00000000-0000-0000-0000-000000000010",
-      "specializationTitle": "Терапия",
-      "appointment_type": "phone",
-      "appointment_phone": "+79990000000",
-      "iconCode": "therapy"
-    }
-  ],
-  "services": [
+      "client_message_id": "onec-message-0001",
+      "user_id": 123456789,
+      "text": "Здравствуйте"
+    },
     {
-      "serviceId": "00000000-0000-0000-0000-000000000100",
-      "serviceTitle": "Первичный приём",
-      "servicePrice": 2500,
-      "serviceDuration": 30,
-      "specializationId": "00000000-0000-0000-0000-000000000010"
+      "client_message_id": "onec-message-0002",
+      "chat_id": 987654321,
+      "text": "Сообщение в чат"
     }
   ]
 }
 ```
 
-#### Валидация
+Поддерживаемые поля адресации:
 
-- `categoryId`, `doctorId`, `specializationId`, `serviceId` — UUID.
-- `appointment_type` — одно из: `online`, `phone`, `phone_and_chat`.
-- `iconCode` у специализации — опциональный код иконки из белого списка:
-  `default`, `therapy`, `doctor`, `cardiology`, `dentistry`, `surgery`,
-  `gynecology`, `urology`, `neurology`, `ophthalmology`, `pediatrics`, `lab`,
-  `diagnostics`, `xray`, `vaccination`, `cosmetology`, `trichology`,
-  `physiotherapy`.
-- Флаги `isCartAllow`, `isDateRequired`, `isDoctorRequired` — boolean.
-- `employees`, `specializations`, `services` — массивы с валидной структурой.
+- `user_id` / `userId`;
+- `chat_id` / `chatId`.
 
-#### Успешный ответ
+Поддерживаемые поля тела сообщения:
+
+- `text`;
+- `attachments`;
+- `link`;
+- `notify`;
+- `format`.
+
+Дополнительный query-параметр MAX:
+
+- `disable_link_preview` / `disableLinkPreview`.
+
+Пример:
+
+```bash
+curl -X POST "https://chat.example.com/api/v1/onec/messages/outgoing" \
+  -H "X-Onec-Api-Key: ${ONEC_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "client_message_id": "onec-message-0001",
+    "user_id": 123456789,
+    "text": "Здравствуйте"
+  }'
+```
+
+Успешный ответ:
 
 ```json
 {
   "ok": true,
-  "key": "onec:catalogs:category:<categoryId>"
+  "sent": 1,
+  "failed": 0,
+  "results": [
+    {
+      "ok": true,
+      "client_message_id": "onec-message-0001",
+      "max_response": {
+        "message": {}
+      }
+    }
+  ]
 }
 ```
 
-## Хранение в Redis
+Если часть сообщений не отправилась, backend возвращает HTTP `207` и детальный список результатов.
 
-Каждая категория сохраняется по ключу:
-
-`onec:catalogs:category:<categoryId>`
-
-Значение: JSON объекта категории + служебное поле `updatedAt` (ISO timestamp).
-
-## Webhook MAX -> 1C
+## Webhook MAX
 
 ### `POST /api/v1/max/webhook`
 
-Публичный endpoint для Webhook-подписки MAX. Принимает объект `Update` от MAX и синхронно пересылает его в 1C методом `POST` на `/v1/webhook`.
+Публичный endpoint для Webhook-подписки MAX.
 
-Тело запроса пересылается в 1C без обёртки и изменений.
+Backend:
 
-#### Переменные окружения
+- проверяет заголовок `X-Max-Bot-Api-Secret`, если задан `MAX_WEBHOOK_SECRET`;
+- проверяет, что тело запроса — JSON-объект;
+- кладёт объект `Update` в Redis-очередь;
+- возвращает MAX `200 OK`, если событие принято в очередь.
 
-- `MAX_WEBHOOK_SECRET` — секрет из подписки MAX. Если задан, backend проверяет заголовок `X-Max-Bot-Api-Secret`.
-- `MAX_WEBHOOK_FORWARD_TIMEOUT_MS` — таймаут пересылки в 1C, по умолчанию `25000`.
-
-#### Настройка подписки MAX
-
-После деплоя endpoint должен быть доступен по HTTPS на 443 порту, например:
+Пример URL:
 
 ```text
 https://chat.example.com/api/v1/max/webhook
 ```
 
-Пример регистрации подписки:
+Ответ:
 
-```bash
-curl -X POST "https://platform-api.max.ru/subscriptions" \
-  -H "Authorization: ${MAX_BOT_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "url": "https://chat.example.com/api/v1/max/webhook",
-    "update_types": ["message_created", "bot_started"],
-    "secret": "'"${MAX_WEBHOOK_SECRET}"'"
-  }'
+```json
+{
+  "ok": true,
+  "queued": true,
+  "message_id": "9aebd640-c52a-4f3d-a216-b9b6c5efb928"
+}
 ```
 
-Если 1C вернёт ошибку или не ответит до таймаута, backend вернёт MAX код `502`, чтобы доставка считалась неуспешной и MAX мог выполнить повторную попытку.
+## MAX Bot API
+
+Для отправки сообщений backend использует официальный endpoint MAX Bot API:
+
+- `POST https://platform-api2.max.ru/messages`
+- авторизация через заголовок `Authorization: <MAX_BOT_TOKEN>`
+
+Практическое ограничение MAX: не более двух сообщений в секунду в один диалог/чат. Если на стороне 1С возможны массовые отправки в один и тот же диалог, нужно дозировать пачки либо добавить отдельный worker с rate-limit.
