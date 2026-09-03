@@ -7,8 +7,8 @@
 - Debian 12 или совместимая Linux-система.
 - Публичный домен, направленный на VDS.
 - Открытые входящие порты `80` и `443`.
-- Docker Engine и Docker Compose plugin.
-- Доверенный TLS-сертификат для домена.
+- Docker Engine и Docker Compose.
+- Домен должен корректно указывать на VDS: Caddy сам выпустит доверенный TLS-сертификат Let's Encrypt.
 - Токен бота MAX.
 - Сервисный ключ для обмена 1С ↔ VDS.
 
@@ -34,7 +34,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 git clone https://github.com/SidorukSV/max-unified-chat-public.git
 cd max-unified-chat-public
 cp backend/.env.production.example backend/.env.production
-mkdir -p deploy/certs logs
+mkdir -p logs
 ```
 
 ## 4. Настройка backend
@@ -44,6 +44,7 @@ mkdir -p deploy/certs logs
 ```env
 ONEC_API_KEY=replace_with_strong_random_service_key
 MAX_WEBHOOK_SECRET=replace_with_max_webhook_secret
+PUBLIC_DOMAIN=chat.example.com
 MAX_BOT_TOKEN=replace_with_max_bot_token
 MAX_WEBHOOK_URL=https://chat.example.com/api/v1/max/webhook
 CORS_ALLOWED_ORIGINS=https://chat.example.com
@@ -79,12 +80,13 @@ POST https://chat.example.com/api/v1/onec/messages/outgoing
 
 ## 6. TLS-сертификаты
 
-Nginx ожидает:
+Сертификаты выпускает Caddy автоматически через Let's Encrypt.
 
-- `deploy/certs/fullchain.pem`
-- `deploy/certs/privkey.pem`
+Перед запуском проверьте:
 
-Можно использовать сертификаты Let's Encrypt или сертификаты, выпущенные инфраструктурой клиента.
+- домен из `PUBLIC_DOMAIN` указывает на IP сервера;
+- входящие порты `80` и `443` открыты;
+- на сервере нет другого процесса, занимающего `80/443`.
 
 ## 7. Запуск
 

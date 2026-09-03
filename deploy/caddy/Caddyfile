@@ -1,0 +1,14 @@
+{$PUBLIC_DOMAIN} {
+    encode gzip
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy no-referrer
+    }
+
+    reverse_proxy /api/* backend:3000
+    reverse_proxy /healthz backend:3000
+
+    respond 404
+}

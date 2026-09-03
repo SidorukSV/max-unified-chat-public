@@ -14,7 +14,7 @@
 
 - `backend/` — Node.js/Fastify API-сервис.
 - `onec/` — исходники расширения 1С.
-- `deploy/nginx/` — reverse proxy для HTTPS и проксирования API.
+- `deploy/caddy/` — reverse proxy с автоматическим TLS и проксированием API.
 - `scripts/subscribe-max-webhook.sh` — настройка webhook подписки MAX.
 - `install-guide/DEBIAN-DOCKER.md` — инструкция развертывания на Debian через Docker.
 - `ONEC-API.MD` — описание HTTP API 1С.
@@ -25,7 +25,7 @@
 - Fastify
 - Redis 7
 - Docker / Docker Compose
-- Nginx reverse proxy
+- Caddy reverse proxy с автоматическим Let's Encrypt TLS
 - 1С HTTP-сервис/регламентный обмен
 
 ## Быстрый запуск на сервере
@@ -42,8 +42,8 @@ docker compose up -d --build
 Проверка:
 
 ```bash
-curl -k https://localhost/healthz
-curl -k https://localhost/api/v1/version
+curl https://chat.example.com/healthz
+curl https://chat.example.com/api/v1/version
 ```
 
 ## Важные ограничения
