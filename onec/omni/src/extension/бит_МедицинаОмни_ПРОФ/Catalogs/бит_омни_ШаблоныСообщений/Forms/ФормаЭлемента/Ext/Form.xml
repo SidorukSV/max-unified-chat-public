@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<Visible>false</Visible>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<UsualGroup name="Группа3" id="39">
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="40"/>
+			<ChildItems>
+				<InputField name="Наименование" id="4">
+					<DataPath>Объект.Description</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+				</InputField>
+				<InputField name="ИдентификаторСтандартногоШаблона" id="54">
+					<DataPath>Объект.ИдентификаторСтандартногоШаблона</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ИдентификаторСтандартногоШаблонаКонтекстноеМеню" id="55"/>
+					<ExtendedTooltip name="ИдентификаторСтандартногоШаблонаРасширеннаяПодсказка" id="56"/>
+				</InputField>
+				<UsualGroup name="Группа4" id="44">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="45"/>
+					<ChildItems>
+						<InputField name="ВариантФормата" id="41">
+							<DataPath>Объект.ВариантФормата</DataPath>
+							<ListChoiceMode>true</ListChoiceMode>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Простой текст (без формата)</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string"/>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Разметка MarkDown v.2</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">markdown</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Разметка HTML</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">html</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="ВариантФорматаКонтекстноеМеню" id="42"/>
+							<ExtendedTooltip name="ВариантФорматаРасширеннаяПодсказка" id="43"/>
+						</InputField>
+						<UsualGroup name="Группа5" id="46">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Справка о форматах</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>PopUp</Behavior>
+							<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="47"/>
+							<ChildItems>
+								<LabelDecoration name="Декорация3" id="51">
+									<Title formatted="true">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Используйте следующий синтаксис в своем сообщении при использовании формата &lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;MarkDown v.2 &lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;(справка приведена с официального описания  Bot API)&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;:&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;*&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;полужирный текст&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;*&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;_&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;i&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;курсивный текст&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;_&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;__&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;u&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;подчеркнутый текст&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;__&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;~зачеркнутый текст~&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;*&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;жирный&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt; _&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;i&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;курсивный жирный&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt; ~&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;i&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;жирный курсивный зачеркнутый&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;~ _&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;i&gt;&lt;u&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;_подчеркнутый курсивный жирный&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;___&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt; жирный&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;*&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;[Ссылка](http://www.example.com/)&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;[Упоминание в телеграм](tg://user?id=123456789)&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;`одна строка моноширного текста`&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;```&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;блок моноширного текста&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;```&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;```большой многострочный
+&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;блок моноширного текста
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;```&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Примечание:&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Любой спец. символ, цифра, буква английского алфавита может быть экранирован символом "\" тогда такой символ будет рассматриваться не как разметка а как отдельный символ. Например: *жирный \* текст* будет преобразован в &lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;жирный * текст&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Во всех местах сообщения сиволы: '_', '*', '[', ']', '(', ')', '~', '`', '&gt;&gt;', '#', '+', '-', '=', '|', '{', '}', '.', '!' должны быть экранированы с помощью символа '\'.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;В случае двусмысленности между объектами курсива и подчеркивания __ всегда  обрабатывается слева направо как начало или конец объекта подчеркивания, поэтому вместо ___курсивного подчеркивания___ используйте ___курсивное подчеркивание_\r__, где \r-символ с кодом 13, который будет проигнорирован.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="Декорация3КонтекстноеМеню" id="52"/>
+									<ExtendedTooltip name="Декорация3РасширеннаяПодсказка" id="53"/>
+								</LabelDecoration>
+								<LabelDecoration name="Декорация2" id="48">
+									<Title formatted="true">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Используйте следующий синтаксис в своем сообщении при использовании формата &lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;HTML&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt; &lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;(справка приведена с официального описания  Bot API)&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;:&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;b&gt;&gt;жирный&lt;&lt;/b&gt;&gt;, &lt;&lt;strong&gt;&gt;жирный&lt;&lt;/strong&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;i&gt;&gt;курсивный&lt;&lt;/i&gt;&gt;, &lt;&lt;em&gt;&gt;курсивный&lt;&lt;/em&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;u&gt;&gt;подчеркнутый&lt;&lt;/u&gt;&gt;, &lt;&lt;ins&gt;&gt;подчеркнутый&lt;&lt;/ins&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;s&gt;&gt;зачеркнутый&lt;&lt;/s&gt;&gt;, &lt;&lt;strike&gt;&gt;зачеркнутый&lt;&lt;/strike&gt;&gt;, &lt;&lt;del&gt;&gt;зачеркнутый&lt;&lt;/del&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;b&gt;&gt;жирный &lt;&lt;i&gt;&gt;курсивный жирный &lt;&lt;s&gt;&gt;курсивный жирный зачеркнутый&lt;&lt;/s&gt;&gt; &lt;&lt;u&gt;&gt;подчеркнутый курсивный жирный&lt;&lt;/u&gt;&gt;&lt;&lt;/i&gt;&gt; жирный&lt;&lt;/b&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;a href="http://www.example.com/"&gt;&gt;Ссылка&lt;&lt;/a&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;a href="tg://user?id=123456789"&gt;&gt;упоминание &lt;&lt;/a&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;code&gt;&gt;одна строка моноширного текста&lt;&lt;/code&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;pre&gt;&gt;блок моноширного текста&lt;&lt;/pre&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;&lt;&lt;pre&gt;&gt;&lt;&lt;code class="language-python"&gt;&gt;большой блок многострочного&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;моноширного текста&lt;&lt;/code&gt;&gt;&lt;&lt;/pre&gt;&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Примечание:&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;В настоящее время поддерживаются только теги, упомянутые выше.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Все символы &lt;&lt;, &gt;&gt; и&amp;, которые не являются частью тега или сущности HTML, должны быть заменены соответствующими сущностями HTML (&lt;&lt; на &amp;lt;, &gt;&gt; на &amp;gt; и &amp; на &amp;amp;).&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;Поддерживаются все числовые HTML - объекты.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Almarai&gt;&lt;fontsize 8&gt;&lt;color #333333&gt;&lt;bgcolor #FFFFFF&gt;В настоящее время API поддерживает только следующие именованные HTML-объекты: &amp;lt;, &amp;gt;, &amp;amp; и &amp;quot;.
+
+&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;b&gt;ВАЖНО:
+&lt;/&gt;При использовании формата HTML вычисляемые параметры должны заключаться в двойные фигурные скобки, для избежания конфликта формата и параметров, например &lt;b&gt;{{ ИмяПараметра }}&lt;/&gt;, пробел перед и после имени параметра, тоже необходимо указывать, для избежания путаницы на случай если в тексте действительно нужны двойные фигурные скобки.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="Декорация2КонтекстноеМеню" id="49"/>
+									<ExtendedTooltip name="Декорация2РасширеннаяПодсказка" id="50"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<TextDocumentField name="ШаблонСообщения" id="7">
+			<DataPath>Объект.ШаблонСообщения</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ШаблонСообщенияКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ШаблонСообщенияРасширеннаяПодсказка" id="9"/>
+		</TextDocumentField>
+		<InputField name="КнопкиMAX" id="57">
+			<DataPath>Объект.КнопкиMAX</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Кнопки MAX (JSON)</v8:content>
+				</v8:item>
+			</Title>
+			<Height>5</Height>
+			<MultiLine>true</MultiLine>
+			<ContextMenu name="КнопкиMAXКонтекстноеМеню" id="58"/>
+			<ExtendedTooltip name="КнопкиMAXРасширеннаяПодсказка" id="59"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="32">
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="33"/>
+			<ChildItems>
+				<Table name="ПоляШаблона" id="10">
+					<Representation>List</Representation>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<DataPath>Объект.ПоляШаблона</DataPath>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="ПоляШаблонаКонтекстноеМеню" id="11"/>
+					<AutoCommandBar name="ПоляШаблонаКоманднаяПанель" id="12"/>
+					<ExtendedTooltip name="ПоляШаблонаРасширеннаяПодсказка" id="13"/>
+					<SearchStringAddition name="ПоляШаблонаСтрокаПоиска" id="14">
+						<AdditionSource>
+							<Item>ПоляШаблона</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ПоляШаблонаСтрокаПоискаКонтекстноеМеню" id="15"/>
+						<ExtendedTooltip name="ПоляШаблонаСтрокаПоискаРасширеннаяПодсказка" id="16"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ПоляШаблонаСостояниеПросмотра" id="17">
+						<AdditionSource>
+							<Item>ПоляШаблона</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ПоляШаблонаСостояниеПросмотраКонтекстноеМеню" id="18"/>
+						<ExtendedTooltip name="ПоляШаблонаСостояниеПросмотраРасширеннаяПодсказка" id="19"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ПоляШаблонаУправлениеПоиском" id="20">
+						<AdditionSource>
+							<Item>ПоляШаблона</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ПоляШаблонаУправлениеПоискомКонтекстноеМеню" id="21"/>
+						<ExtendedTooltip name="ПоляШаблонаУправлениеПоискомРасширеннаяПодсказка" id="22"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<LabelField name="ПоляШаблонаНомерСтроки" id="23">
+							<DataPath>Объект.ПоляШаблона.LineNumber</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПоляШаблонаНомерСтрокиКонтекстноеМеню" id="24"/>
+							<ExtendedTooltip name="ПоляШаблонаНомерСтрокиРасширеннаяПодсказка" id="25"/>
+						</LabelField>
+						<InputField name="ПоляШаблонаПоле" id="26">
+							<DataPath>Объект.ПоляШаблона.Поле</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПоляШаблонаПолеКонтекстноеМеню" id="27"/>
+							<ExtendedTooltip name="ПоляШаблонаПолеРасширеннаяПодсказка" id="28"/>
+						</InputField>
+					</ChildItems>
+				</Table>
+				<TextDocumentField name="ПоляШаблонаАлгоритмРасчета" id="29">
+					<DataPath>Items.ПоляШаблона.CurrentData.АлгоритмРасчета</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоляШаблонаАлгоритмРасчетаКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ПоляШаблонаАлгоритмРасчетаРасширеннаяПодсказка" id="31"/>
+				</TextDocumentField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа2" id="37">
+			<HorizontalSpacing>Double</HorizontalSpacing>
+			<VerticalSpacing>Double</VerticalSpacing>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<BackColor>style:ToolTipBackColor</BackColor>
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="38"/>
+			<ChildItems>
+				<LabelDecoration name="Декорация1" id="34">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Title formatted="true">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Для описания алгоритма расчета поля используется &lt;b&gt;серверный&lt;/&gt; контекст.
+В контексте можно использовать следующие переменные:
+1. &lt;b&gt;Контекст&lt;/&gt; - ОбсуждениеСистемыВзаимодействия или ЛюбаяСсылка, место формирования сообщения.
+2. &lt;b&gt;Получатель &lt;/&gt;- Структура, получатель сообщения, содержит структуру со следующими полями:
+   - &lt;b&gt;Пользователь1С&lt;/&gt; - СправочникСсылка.Пользователи
+   - &lt;b&gt;Наименование&lt;/&gt; - Строка, представление пользователя  в формате Фамилия Имя
+   - &lt;b&gt;Идентификатор&lt;/&gt; - Строка, идентификатор пользователя 
+3. &lt;b&gt;Результат - &lt;/&gt;Строка, результат вычислений. Сюда необходимо передать вычисленное значение поля.
+
+Пример: &lt;b&gt;Результат = Получатель.Представление;&lt;/&gt;</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="Декорация1КонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="36"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.бит_омни_ШаблоныСообщений</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

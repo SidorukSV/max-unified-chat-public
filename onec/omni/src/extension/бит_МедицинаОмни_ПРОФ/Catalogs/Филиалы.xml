@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Catalog uuid="4b4f22b2-2a57-463d-8f6a-8c4b45586253">
+		<InternalInfo>
+			<xr:GeneratedType name="CatalogObject.Филиалы" category="Object">
+				<xr:TypeId>b2febea7-91be-4909-bcd5-19c28e5c9bb6</xr:TypeId>
+				<xr:ValueId>1c1d2293-9adb-40e7-86b5-b15050d91a84</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="CatalogRef.Филиалы" category="Ref">
+				<xr:TypeId>c3348a8f-c883-4532-9bc2-7a5e654ec5a6</xr:TypeId>
+				<xr:ValueId>9d61f886-b073-49ec-812e-777cca599073</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="CatalogSelection.Филиалы" category="Selection">
+				<xr:TypeId>fc635140-373d-4640-9ab7-e2e7231e5042</xr:TypeId>
+				<xr:ValueId>9c78697d-c921-4a3c-bfbb-6b9f98c9fd9c</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="CatalogList.Филиалы" category="List">
+				<xr:TypeId>6d6dd873-7cd4-4b88-b975-4466ad8bdc60</xr:TypeId>
+				<xr:ValueId>0c04c4ee-c984-41a6-9cfb-c48c2c5b379e</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="CatalogManager.Филиалы" category="Manager">
+				<xr:TypeId>338a07e9-bfaf-4d20-9a2d-777c54790cf7</xr:TypeId>
+				<xr:ValueId>ca5c9437-48ab-45dc-917d-82840ab4354f</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:PropertyState>
+				<xr:Property>ManagerModule</xr:Property>
+				<xr:State>Extended</xr:State>
+			</xr:PropertyState>
+		</InternalInfo>
+		<Properties>
+			<ObjectBelonging>Adopted</ObjectBelonging>
+			<Name>Филиалы</Name>
+			<Comment/>
+			<ExtendedConfigurationObject>e1ffe96c-e8df-489b-bb44-544a4ac860e0</ExtendedConfigurationObject>
+		</Properties>
+		<ChildObjects/>
+	</Catalog>
+</MetaDataObject>

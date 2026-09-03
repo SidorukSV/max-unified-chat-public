@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<HTTPService uuid="4efc1b27-71a8-4c19-866a-b071b04bc77c">
+		<Properties>
+			<Name>бит_омни_Интеграция</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>БИТ. Медицина / Омни: Интеграция</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<RootURL>omni</RootURL>
+			<ReuseSessions>Use</ReuseSessions>
+			<SessionMaxAge>600</SessionMaxAge>
+		</Properties>
+		<ChildObjects>
+			<URLTemplate uuid="585673b4-af20-437a-94cf-3e9e03ef1701">
+				<Properties>
+					<Name>Catalogs</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Catalogs</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/catalogs/{key}/*</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="3dad0d14-6b6f-4f12-a10b-7472866a1368">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>catalogsGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="70b9e220-3a8d-46ed-804a-a3725bcc431d">
+				<Properties>
+					<Name>Transactions</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Transactions</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/transactions/{key}/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="c1508f43-b14d-4345-85a5-0ee9a7775918">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>TransactionsPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="5aef0fd2-3c8c-478c-9cc1-5cbc98494044">
+				<Properties>
+					<Name>Documents</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Documents</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/documents/{key}/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="fb09ff9e-f1ad-4f69-bcbf-fe983a736bc6">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>DocumentsGET</Handler>
+						</Properties>
+					</Method>
+					<Method uuid="c106e7ce-0e0c-4d8a-bbf1-ddd2abec90e2">
+						<Properties>
+							<Name>PUT</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>PUT</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>PUT</HTTPMethod>
+							<Handler>DocumentsPUT</Handler>
+						</Properties>
+					</Method>
+					<Method uuid="4aa08eaf-6652-4dc0-843e-199ca77ba643">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>DocumentsPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="c7f55756-72de-41ce-af49-b6df9507ad3b">
+				<Properties>
+					<Name>Settings</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Settings</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/settings</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="ad0a8aea-8e81-4425-a169-3190a1fb3aa4">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>SettingsGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="966fce3b-6133-494f-8872-6a2900eb0073">
+				<Properties>
+					<Name>StartIBSession</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Start IBSession</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/startIBSession</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="b4254982-5c06-4970-a2f2-1a248d7cf5be">
+						<Properties>
+							<Name>HEAD</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>HEAD</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>HEAD</HTTPMethod>
+							<Handler>StartIBSessionHEAD</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="73b404cc-bfc0-4d82-b6a6-8a3307a37dae">
+				<Properties>
+					<Name>FinishIBSession</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Finish IBSession</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/finishIBSession</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="63641fec-20bb-4c76-8647-6b0eb01e4b39">
+						<Properties>
+							<Name>HEAD</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>HEAD</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>HEAD</HTTPMethod>
+							<Handler>FinishIBSessionHEAD</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="18c78faa-e309-4373-a7bb-fb60a447ca25">
+				<Properties>
+					<Name>MAXWebhook</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>MAX Webhook</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/v1/webhook/{bot}</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="df6f3d41-db3e-40f9-8383-7313c9cbb53e">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>MAXWebhookPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+		</ChildObjects>
+	</HTTPService>
+</MetaDataObject>

@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаВыборМетаданных" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Метаданные</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>true</HorizontalStretch>
+			<VerticalStretch>true</VerticalStretch>
+			<Behavior>Usual</Behavior>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ГруппаВыборМетаданныхРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<Table name="ОбъектыМетаданных" id="3">
+					<Representation>Tree</Representation>
+					<CommandBarLocation>None</CommandBarLocation>
+					<DefaultItem>true</DefaultItem>
+					<InitialTreeView>ExpandTopLevel</InitialTreeView>
+					<DataPath>ОбъектыМетаданных</DataPath>
+					<ContextMenu name="ОбъектыМетаданныхКонтекстноеМеню" id="4"/>
+					<AutoCommandBar name="ОбъектыМетаданныхКоманднаяПанель" id="5"/>
+					<ExtendedTooltip name="ОбъектыМетаданныхРасширеннаяПодсказка" id="6"/>
+					<SearchStringAddition name="ОбъектыМетаданныхСтрокаПоиска" id="60">
+						<AdditionSource>
+							<Item>ОбъектыМетаданных</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ОбъектыМетаданныхСтрокаПоискаКонтекстноеМеню" id="61"/>
+						<ExtendedTooltip name="ОбъектыМетаданныхСтрокаПоискаРасширеннаяПодсказка" id="62"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ОбъектыМетаданныхСостояниеПросмотра" id="63">
+						<AdditionSource>
+							<Item>ОбъектыМетаданных</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ОбъектыМетаданныхСостояниеПросмотраКонтекстноеМеню" id="64"/>
+						<ExtendedTooltip name="ОбъектыМетаданныхСостояниеПросмотраРасширеннаяПодсказка" id="65"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ОбъектыМетаданныхУправлениеПоиском" id="66">
+						<AdditionSource>
+							<Item>ОбъектыМетаданных</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ОбъектыМетаданныхУправлениеПоискомКонтекстноеМеню" id="67"/>
+						<ExtendedTooltip name="ОбъектыМетаданныхУправлениеПоискомРасширеннаяПодсказка" id="68"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<LabelField name="ОбъектыМетаданныхПредставление" id="7">
+							<DataPath>ОбъектыМетаданных.Представление</DataPath>
+							<ContextMenu name="ОбъектыМетаданныхПредставлениеКонтекстноеМеню" id="8"/>
+							<ExtendedTooltip name="ОбъектыМетаданныхПредставлениеРасширеннаяПодсказка" id="9"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаРеквизиты" id="10">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Реквизиты</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>true</HorizontalStretch>
+			<VerticalStretch>true</VerticalStretch>
+			<Behavior>Usual</Behavior>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ГруппаРеквизитыРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаТаблицыРеквизитов" id="12">
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>true</VerticalStretch>
+					<Group>Horizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаТаблицыРеквизитовРасширеннаяПодсказка" id="13"/>
+					<ChildItems>
+						<UsualGroup name="ГруппаРеквизитыПередЗаписью" id="14">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Реквизиты перед записью</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="ГруппаРеквизитыПередЗаписьюРасширеннаяПодсказка" id="15"/>
+							<ChildItems>
+								<Table name="РеквизитыПередЗаписью" id="16">
+									<Representation>List</Representation>
+									<CommandBarLocation>None</CommandBarLocation>
+									<DataPath>РеквизитыПередЗаписью</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="РеквизитыПередЗаписьюКонтекстноеМеню" id="17"/>
+									<AutoCommandBar name="РеквизитыПередЗаписьюКоманднаяПанель" id="18"/>
+									<ExtendedTooltip name="РеквизитыПередЗаписьюРасширеннаяПодсказка" id="19"/>
+									<SearchStringAddition name="РеквизитыПередЗаписьюСтрокаПоиска" id="69">
+										<AdditionSource>
+											<Item>РеквизитыПередЗаписью</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПередЗаписьюСтрокаПоискаКонтекстноеМеню" id="70"/>
+										<ExtendedTooltip name="РеквизитыПередЗаписьюСтрокаПоискаРасширеннаяПодсказка" id="71"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="РеквизитыПередЗаписьюСостояниеПросмотра" id="72">
+										<AdditionSource>
+											<Item>РеквизитыПередЗаписью</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПередЗаписьюСостояниеПросмотраКонтекстноеМеню" id="73"/>
+										<ExtendedTooltip name="РеквизитыПередЗаписьюСостояниеПросмотраРасширеннаяПодсказка" id="74"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="РеквизитыПередЗаписьюУправлениеПоиском" id="75">
+										<AdditionSource>
+											<Item>РеквизитыПередЗаписью</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПередЗаписьюУправлениеПоискомКонтекстноеМеню" id="76"/>
+										<ExtendedTooltip name="РеквизитыПередЗаписьюУправлениеПоискомРасширеннаяПодсказка" id="77"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<CheckBoxField name="РеквизитыПередЗаписьюИспользовать" id="20">
+											<DataPath>РеквизитыПередЗаписью.Использовать</DataPath>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="РеквизитыПередЗаписьюИспользоватьКонтекстноеМеню" id="21"/>
+											<ExtendedTooltip name="РеквизитыПередЗаписьюИспользоватьРасширеннаяПодсказка" id="22"/>
+										</CheckBoxField>
+										<LabelField name="РеквизитыПередЗаписьюИмя" id="23">
+											<DataPath>РеквизитыПередЗаписью.Имя</DataPath>
+											<ContextMenu name="РеквизитыПередЗаписьюИмяКонтекстноеМеню" id="24"/>
+											<ExtendedTooltip name="РеквизитыПередЗаписьюИмяРасширеннаяПодсказка" id="25"/>
+										</LabelField>
+										<LabelField name="РеквизитыПередЗаписьюСиноним" id="26">
+											<DataPath>РеквизитыПередЗаписью.Синоним</DataPath>
+											<ContextMenu name="РеквизитыПередЗаписьюСинонимКонтекстноеМеню" id="27"/>
+											<ExtendedTooltip name="РеквизитыПередЗаписьюСинонимРасширеннаяПодсказка" id="28"/>
+										</LabelField>
+										<LabelField name="РеквизитыПередЗаписьюТип" id="29">
+											<DataPath>РеквизитыПередЗаписью.ТипПредставление</DataPath>
+											<ContextMenu name="РеквизитыПередЗаписьюТипКонтекстноеМеню" id="30"/>
+											<ExtendedTooltip name="РеквизитыПередЗаписьюТипРасширеннаяПодсказка" id="31"/>
+										</LabelField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаРеквизитыПриЗаписи" id="32">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Реквизиты при записи</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="ГруппаРеквизитыПриЗаписиРасширеннаяПодсказка" id="33"/>
+							<ChildItems>
+								<Table name="РеквизитыПриЗаписи" id="34">
+									<Representation>List</Representation>
+									<CommandBarLocation>None</CommandBarLocation>
+									<DataPath>РеквизитыПриЗаписи</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="РеквизитыПриЗаписиКонтекстноеМеню" id="35"/>
+									<AutoCommandBar name="РеквизитыПриЗаписиКоманднаяПанель" id="36"/>
+									<ExtendedTooltip name="РеквизитыПриЗаписиРасширеннаяПодсказка" id="37"/>
+									<SearchStringAddition name="РеквизитыПриЗаписиСтрокаПоиска" id="78">
+										<AdditionSource>
+											<Item>РеквизитыПриЗаписи</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПриЗаписиСтрокаПоискаКонтекстноеМеню" id="79"/>
+										<ExtendedTooltip name="РеквизитыПриЗаписиСтрокаПоискаРасширеннаяПодсказка" id="80"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="РеквизитыПриЗаписиСостояниеПросмотра" id="81">
+										<AdditionSource>
+											<Item>РеквизитыПриЗаписи</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПриЗаписиСостояниеПросмотраКонтекстноеМеню" id="82"/>
+										<ExtendedTooltip name="РеквизитыПриЗаписиСостояниеПросмотраРасширеннаяПодсказка" id="83"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="РеквизитыПриЗаписиУправлениеПоиском" id="84">
+										<AdditionSource>
+											<Item>РеквизитыПриЗаписи</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="РеквизитыПриЗаписиУправлениеПоискомКонтекстноеМеню" id="85"/>
+										<ExtendedTooltip name="РеквизитыПриЗаписиУправлениеПоискомРасширеннаяПодсказка" id="86"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<CheckBoxField name="РеквизитыПриЗаписиИспользовать" id="38">
+											<DataPath>РеквизитыПриЗаписи.Использовать</DataPath>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="РеквизитыПриЗаписиИспользоватьКонтекстноеМеню" id="39"/>
+											<ExtendedTooltip name="РеквизитыПриЗаписиИспользоватьРасширеннаяПодсказка" id="40"/>
+										</CheckBoxField>
+										<LabelField name="РеквизитыПриЗаписиИмя" id="41">
+											<DataPath>РеквизитыПриЗаписи.Имя</DataPath>
+											<ContextMenu name="РеквизитыПриЗаписиИмяКонтекстноеМеню" id="42"/>
+											<ExtendedTooltip name="РеквизитыПриЗаписиИмяРасширеннаяПодсказка" id="43"/>
+										</LabelField>
+										<LabelField name="РеквизитыПриЗаписиСиноним" id="44">
+											<DataPath>РеквизитыПриЗаписи.Синоним</DataPath>
+											<ContextMenu name="РеквизитыПриЗаписиСинонимКонтекстноеМеню" id="45"/>
+											<ExtendedTooltip name="РеквизитыПриЗаписиСинонимРасширеннаяПодсказка" id="46"/>
+										</LabelField>
+										<LabelField name="РеквизитыПриЗаписиТип" id="47">
+											<DataPath>РеквизитыПриЗаписи.ТипПредставление</DataPath>
+											<ContextMenu name="РеквизитыПриЗаписиТипКонтекстноеМеню" id="48"/>
+											<ExtendedTooltip name="РеквизитыПриЗаписиТипРасширеннаяПодсказка" id="49"/>
+										</LabelField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаКомандыМастера" id="50">
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаКомандыМастераРасширеннаяПодсказка" id="51"/>
+			<ChildItems>
+				<Button name="Назад" id="52">
+					<Type>UsualButton</Type>
+					<Visible>false</Visible>
+					<CommandName>Form.Command.Назад</CommandName>
+					<ExtendedTooltip name="НазадРасширеннаяПодсказка" id="53"/>
+				</Button>
+				<Button name="Далее" id="54">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.Далее</CommandName>
+					<ExtendedTooltip name="ДалееРасширеннаяПодсказка" id="55"/>
+				</Button>
+				<Button name="Создать" id="56">
+					<Type>UsualButton</Type>
+					<Visible>false</Visible>
+					<CommandName>Form.Command.Создать</CommandName>
+					<ExtendedTooltip name="СоздатьРасширеннаяПодсказка" id="57"/>
+				</Button>
+				<Button name="Отмена" id="58">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.Отмена</CommandName>
+					<ExtendedTooltip name="ОтменаРасширеннаяПодсказка" id="59"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ОбъектыМетаданных" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объекты метаданных</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Представление" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ПолноеИмя" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ЭтоГруппа" id="3">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="РеквизитыПередЗаписью" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Реквизиты перед записью</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Использовать" id="1">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Имя" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Синоним" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ТипЗначения" id="4">
+					<Type/>
+				</Column>
+				<Column name="ТипПредставление" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ПолноеИмяМетаданных" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="РеквизитыПриЗаписи" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Реквизиты при записи</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Использовать" id="1">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Имя" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Синоним" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ТипЗначения" id="4">
+					<Type/>
+				</Column>
+				<Column name="ТипПредставление" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ПолноеИмяМетаданных" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="АдресСхемыКомпоновки" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Адрес схемы компоновки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОбновитьТолькоНаборы" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить только наборы</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПолноеИмяМетаданных" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Полное имя метаданных</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>250</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ТекущийШаг" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Текущий шаг</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Далее" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Далее</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Далее</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="Назад" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Назад</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Назад</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="Создать" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Создать</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="Отмена" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Отмена</Action>
+			<Representation>Text</Representation>
+		</Command>
+	</Commands>
+</Form>

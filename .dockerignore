@@ -1,0 +1,16 @@
+.git
+.github
+node_modules
+logs
+dist
+coverage
+.env
+*.env
+backend/.env
+backend/.env.production
+backend/onec-config.yml
+.artifacts
+.local-artifacts
+database
+install-guide
+onec

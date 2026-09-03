@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Runtime data
+logs/
+*.log
+.runtime/
+database/
+
+# Local secrets
+.env
+*.env
+!*.env.example
+backend/.env
+backend/.env.production
+backend/onec-config.yml
+onec-config.yml
+
+# Build artifacts
+dist/
+coverage/
+.artifacts/
+.local-artifacts/
+
+# Editor/system files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Document uuid="e4619f3b-d9f8-4447-998a-ab9cb55371a4">
+		<InternalInfo>
+			<xr:GeneratedType name="DocumentObject.УстановкаГрафиковРаботы" category="Object">
+				<xr:TypeId>ffe8d227-8bce-4b40-a63f-baa4d19c6484</xr:TypeId>
+				<xr:ValueId>74d9e08f-9b42-4dfb-843a-e4ec5e8609dc</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentRef.УстановкаГрафиковРаботы" category="Ref">
+				<xr:TypeId>6c127a89-759c-4f79-99bf-4ad9fdb8f9de</xr:TypeId>
+				<xr:ValueId>e809b58a-141d-426b-aaf4-b6a0420941b2</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentSelection.УстановкаГрафиковРаботы" category="Selection">
+				<xr:TypeId>b766415c-408e-4806-a063-c9b20778aea3</xr:TypeId>
+				<xr:ValueId>23caee03-6743-4d26-bbc4-b27226e01c8f</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentList.УстановкаГрафиковРаботы" category="List">
+				<xr:TypeId>fb7cf1b0-deac-40b5-a667-6d5ee61bd628</xr:TypeId>
+				<xr:ValueId>bbc22619-717c-4df9-ade5-386762641a24</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentManager.УстановкаГрафиковРаботы" category="Manager">
+				<xr:TypeId>cc851638-7061-43a1-8373-82077b6b2646</xr:TypeId>
+				<xr:ValueId>57aa2f7f-cd87-45bf-82e4-d0966f612cd2</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:PropertyState>
+				<xr:Property>ManagerModule</xr:Property>
+				<xr:State>Extended</xr:State>
+			</xr:PropertyState>
+		</InternalInfo>
+		<Properties>
+			<ObjectBelonging>Adopted</ObjectBelonging>
+			<Name>УстановкаГрафиковРаботы</Name>
+			<Comment/>
+			<ExtendedConfigurationObject>a65b266e-0c08-48e7-bc39-78dfe405c9a0</ExtendedConfigurationObject>
+			<RegisterRecords/>
+		</Properties>
+		<ChildObjects/>
+	</Document>
+</MetaDataObject>

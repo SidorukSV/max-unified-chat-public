@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Document uuid="28717318-928d-4605-8250-4383affaa37a">
+		<InternalInfo>
+			<xr:GeneratedType name="DocumentObject.Прием" category="Object">
+				<xr:TypeId>f779a05f-371f-4284-92b8-2c28ce5a9b08</xr:TypeId>
+				<xr:ValueId>4072924a-64a5-483e-8d7d-795f5d127497</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentRef.Прием" category="Ref">
+				<xr:TypeId>ed863b91-fc26-4920-93ad-464de202407c</xr:TypeId>
+				<xr:ValueId>2e56e8d1-b99a-45e2-b821-151cae3c8cfc</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentSelection.Прием" category="Selection">
+				<xr:TypeId>01b02f91-91ae-4961-89d4-069b48a632d0</xr:TypeId>
+				<xr:ValueId>175feb15-7dac-4f82-a290-cdb4b56bf62e</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentList.Прием" category="List">
+				<xr:TypeId>ba0af614-064a-4067-a8d7-81838ffd73d5</xr:TypeId>
+				<xr:ValueId>dbac618b-41ba-4cc6-ac82-122aa5a1f9e1</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentManager.Прием" category="Manager">
+				<xr:TypeId>39bcd837-9232-4b36-819f-c4bb42ab27aa</xr:TypeId>
+				<xr:ValueId>eeaab8d9-1c94-4a05-9645-2b28665a10ff</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:PropertyState>
+				<xr:Property>ManagerModule</xr:Property>
+				<xr:State>Extended</xr:State>
+			</xr:PropertyState>
+		</InternalInfo>
+		<Properties>
+			<ObjectBelonging>Adopted</ObjectBelonging>
+			<Name>Прием</Name>
+			<Comment/>
+			<ExtendedConfigurationObject>ccec03e7-fa54-4e1c-875d-c391de33ad7c</ExtendedConfigurationObject>
+			<RegisterRecords/>
+		</Properties>
+		<ChildObjects/>
+	</Document>
+</MetaDataObject>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AccumulationRegister uuid="e7ba6f25-8343-40e6-93da-ac88644e8082">
+		<InternalInfo>
+			<xr:GeneratedType name="AccumulationRegisterRecord.НакопленияПоСкидкам" category="Record">
+				<xr:TypeId>3f23609c-87a6-4d76-94c7-e0686de74620</xr:TypeId>
+				<xr:ValueId>249068f6-2889-435d-b354-44b730027e39</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="AccumulationRegisterManager.НакопленияПоСкидкам" category="Manager">
+				<xr:TypeId>99135211-90d9-44a3-b866-104d1050a504</xr:TypeId>
+				<xr:ValueId>44e81276-9bee-4522-8eb4-c154c93c95b8</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="AccumulationRegisterSelection.НакопленияПоСкидкам" category="Selection">
+				<xr:TypeId>7a0eac77-0c48-49b3-8d51-3a25195d035f</xr:TypeId>
+				<xr:ValueId>e3063201-a7ca-4c58-872f-a34d041146fd</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="AccumulationRegisterList.НакопленияПоСкидкам" category="List">
+				<xr:TypeId>a30b3c84-bbf7-40dc-bc96-fb9673d675de</xr:TypeId>
+				<xr:ValueId>71f9f578-42f5-43c3-9631-2c59686ee97d</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="AccumulationRegisterRecordSet.НакопленияПоСкидкам" category="RecordSet">
+				<xr:TypeId>c90bfddc-888a-4ae6-891e-5bffee3f3b82</xr:TypeId>
+				<xr:ValueId>45b1b42a-9582-4c85-bd72-c39a7ed5fc00</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="AccumulationRegisterRecordKey.НакопленияПоСкидкам" category="RecordKey">
+				<xr:TypeId>7e3fbbcd-82d4-4401-837f-62bba69c8c78</xr:TypeId>
+				<xr:ValueId>e6c1e428-b055-4147-9b67-ae8d68e6f9d4</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:PropertyState>
+				<xr:Property>ManagerModule</xr:Property>
+				<xr:State>Extended</xr:State>
+			</xr:PropertyState>
+		</InternalInfo>
+		<Properties>
+			<ObjectBelonging>Adopted</ObjectBelonging>
+			<Name>НакопленияПоСкидкам</Name>
+			<Comment/>
+			<ExtendedConfigurationObject>addb9738-5223-4315-a25a-f812574e4b79</ExtendedConfigurationObject>
+			<RegisterType>Balance</RegisterType>
+		</Properties>
+		<ChildObjects/>
+	</AccumulationRegister>
+</MetaDataObject>
