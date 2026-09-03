@@ -77,6 +77,27 @@ export async function popIncomingMaxUpdates(limit) {
     return messages;
 }
 
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+export async function popIncomingMaxUpdatesLongPoll(limit, waitMs) {
+    const deadline = Date.now() + waitMs;
+
+    do {
+        const messages = await popIncomingMaxUpdates(limit);
+        if (messages.length || Date.now() >= deadline) {
+            return messages;
+        }
+
+        await delay(Math.min(250, Math.max(0, deadline - Date.now())));
+    } while (Date.now() < deadline);
+
+    return [];
+}
+
 export async function getIncomingQueueLength() {
     if (isMemoryQueueEnabled()) {
         return getMemoryQueue(config.redisIncomingQueueKey).length;

@@ -108,6 +108,7 @@
 			<CommonModule>бит_омни_РаботаССообщениями</CommonModule>
 			<CommonModule>бит_омни_РаботаССообщениямПовтИсп</CommonModule>
 			<CommonModule>бит_омни_СхемыКомпоновки</CommonModule>
+			<ScheduledJob>бит_омни_ОбменСообщениямиMAXЧерезVDS</ScheduledJob>
 			<HTTPService>бит_омни_Интеграция</HTTPService>
 			<EventSubscription>бит_омни_СправочникиПередЗаписью</EventSubscription>
 			<EventSubscription>бит_омни_ПриЗаписиОбъекта</EventSubscription>

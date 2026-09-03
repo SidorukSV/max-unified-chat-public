@@ -39,11 +39,12 @@ ONEC_API_KEY=replace_with_strong_random_service_key
 Параметры:
 
 - `limit` — максимальное количество сообщений за один вызов. По умолчанию `ONEC_POLL_DEFAULT_LIMIT`, верхняя граница `ONEC_POLL_MAX_LIMIT`.
+- `waitMs` — опциональное ожидание long polling при пустой очереди, в миллисекундах. Верхняя граница backend — `55000`.
 
 Пример:
 
 ```bash
-curl "https://chat.example.com/api/v1/onec/messages/incoming?limit=50" \
+curl "https://chat.example.com/api/v1/onec/messages/incoming?limit=50&waitMs=25000" \
   -H "X-Onec-Api-Key: ${ONEC_API_KEY}"
 ```
 
@@ -67,6 +68,23 @@ curl "https://chat.example.com/api/v1/onec/messages/incoming?limit=50" \
 ```
 
 `update` содержит исходный объект `Update` от MAX без изменений.
+
+## Настройки расширения 1С
+
+В расширении добавлены настройки раздела `MAX.VDS`:
+
+- `MAX_VDS_URL` — публичный HTTPS-адрес backend/VDS без завершающего `/`, например `https://chat.example.com`;
+- `MAX_VDS_API_KEY` — сервисный ключ для заголовка `X-Onec-Api-Key`;
+- `MAX_VDS_POLL_LIMIT` — размер пачки входящих сообщений за один опрос, по умолчанию `50`;
+- `MAX_VDS_LONG_POLL_WAIT_MS` — время удержания запроса backend при пустой очереди, по умолчанию `25000`.
+
+Регламентное задание расширения:
+
+- имя: `бит_омни_ОбменСообщениямиMAXЧерезVDS`;
+- метод: `бит_омни_ИнтеграцияСMAX.ВыполнитьРегламентныйОбменСVDS`;
+- расписание по умолчанию: каждые 60 секунд;
+- при заполненных `MAX_VDS_URL` и `MAX_VDS_API_KEY` забирает входящие события из очереди VDS и обрабатывает их штатным обработчиком MAX-чата;
+- исходящие сообщения 1С при включенном VDS-обмене отправляются через `/api/v1/onec/messages/outgoing`, а не напрямую в MAX API.
 
 ## Исходящие сообщения из 1С в MAX
 

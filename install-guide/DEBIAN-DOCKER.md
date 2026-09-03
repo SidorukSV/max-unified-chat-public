@@ -58,10 +58,25 @@ CORS_ALLOWED_ORIGINS=https://chat.example.com
 
 ## 5. Настройка обмена в 1С
 
-В 1С нужно настроить регламентное задание, которое вызывает:
+В базе 1С нужно установить расширение `бит_МедицинаОмни_ПРОФ.cfe` и заполнить настройки раздела `MAX.VDS`:
 
 ```text
-GET https://chat.example.com/api/v1/onec/messages/incoming?limit=50
+MAX_VDS_URL=https://chat.example.com
+MAX_VDS_API_KEY=<ONEC_API_KEY>
+MAX_VDS_POLL_LIMIT=50
+MAX_VDS_LONG_POLL_WAIT_MS=25000
+```
+
+После установки расширения должно быть включено регламентное задание:
+
+```text
+бит_омни_ОбменСообщениямиMAXЧерезVDS
+```
+
+Задание вызывает backend методом long polling:
+
+```text
+GET https://chat.example.com/api/v1/onec/messages/incoming?limit=50&waitMs=25000
 ```
 
 с заголовком:
@@ -76,7 +91,7 @@ X-Onec-Api-Key: <ONEC_API_KEY>
 POST https://chat.example.com/api/v1/onec/messages/outgoing
 ```
 
-Формат payload описан в `ONEC-API.MD`.
+Формат payload и детали настроек описаны в `ONEC-API.MD`.
 
 ## 6. TLS-сертификаты
 

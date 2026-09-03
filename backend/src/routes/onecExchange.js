@@ -1,6 +1,6 @@
 import { config } from "../config.js";
 import { onecServiceAuthMiddleware } from "../middleware/serviceAuth.js";
-import { getIncomingQueueLength, popIncomingMaxUpdates } from "../services/messageQueue.js";
+import { getIncomingQueueLength, popIncomingMaxUpdates, popIncomingMaxUpdatesLongPoll } from "../services/messageQueue.js";
 import { sendMaxMessage } from "../services/maxApi.js";
 import { sendApiError } from "../utils/apiErrors.js";
 
@@ -10,6 +10,15 @@ function parseLimit(rawLimit) {
     const value = Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
 
     return Math.min(value, config.onecPollMaxLimit);
+}
+
+function parseWaitMs(rawWaitMs) {
+    const parsed = Number(rawWaitMs || 0);
+    if (!Number.isFinite(parsed) || parsed <= 0) {
+        return 0;
+    }
+
+    return Math.min(Math.floor(parsed), 55000);
 }
 
 function normalizeOutgoingBatch(body) {
@@ -34,13 +43,17 @@ export async function onecExchangeRoutes(app) {
         { preHandler: [onecServiceAuthMiddleware] },
         async (req) => {
             const limit = parseLimit(req.query?.limit);
-            const messages = await popIncomingMaxUpdates(limit);
+            const waitMs = parseWaitMs(req.query?.waitMs);
+            const messages = waitMs > 0
+                ? await popIncomingMaxUpdatesLongPoll(limit, waitMs)
+                : await popIncomingMaxUpdates(limit);
             const remaining = await getIncomingQueueLength();
 
             req.log.info({
                 event: "onec_incoming_messages_polled",
                 deliveredCount: messages.length,
                 remaining,
+                waitMs,
             }, "1C polled incoming MAX messages");
 
             return {

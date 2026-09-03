@@ -27,6 +27,32 @@ test("1C incoming polling requires service API key", async (t) => {
     assert.equal(response.json().error, "onec_api_key_invalid");
 });
 
+test("1C incoming polling supports bounded long polling", async (t) => {
+    messageQueueTestUtils.resetMemoryQueues();
+    const app = await buildApp();
+
+    t.after(async () => {
+        await app.close();
+    });
+
+    const startedAt = Date.now();
+    const response = await app.inject({
+        method: "GET",
+        url: "/api/v1/onec/messages/incoming?limit=1&waitMs=25",
+        headers: {
+            "X-Onec-Api-Key": "onec-test-key",
+        },
+    });
+    const elapsedMs = Date.now() - startedAt;
+
+    assert.equal(response.statusCode, 200);
+    assert.deepEqual(response.json(), {
+        messages: [],
+        remaining: 0,
+    });
+    assert.ok(elapsedMs >= 20);
+});
+
 test("1C outgoing message endpoint sends restricted MAX /messages request", async (t) => {
     messageQueueTestUtils.resetMemoryQueues();
     const app = await buildApp();
