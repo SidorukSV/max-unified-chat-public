@@ -37,11 +37,11 @@
 		</InternalInfo>
 		<Properties>
 			<ObjectBelonging>Adopted</ObjectBelonging>
-			<Name>бит_МедицинаОмни_ПРОФ</Name>
+			<Name>бит_МедицинаМАКС</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>БИТ.Медицина / Омни: ПРОФ</v8:content>
+					<v8:content>БИТ.Медицина МАКС</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
