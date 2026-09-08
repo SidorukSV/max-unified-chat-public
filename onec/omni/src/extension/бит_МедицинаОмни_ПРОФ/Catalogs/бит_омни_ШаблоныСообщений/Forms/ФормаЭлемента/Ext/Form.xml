@@ -3,6 +3,12 @@
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
+		<Event name="BeforeWriteAtServer">ПередЗаписьюНаСервере</Event>
+		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
+	</Events>
 	<ChildItems>
 		<InputField name="Код" id="1">
 			<DataPath>Объект.Code</DataPath>
@@ -167,6 +173,133 @@
 			<ContextMenu name="ШаблонСообщенияКонтекстноеМеню" id="8"/>
 			<ExtendedTooltip name="ШаблонСообщенияРасширеннаяПодсказка" id="9"/>
 		</TextDocumentField>
+		<LabelDecoration name="ПодсказкаКнопок" id="100">
+			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Кнопки с одинаковым номером ряда располагаются рядом. Для подтверждения и отмены выберите готовое действие — параметр заполнится автоматически. URL используется для ссылок, параметр — для callback. JSON формируется при записи шаблона.</v8:content></v8:item></Title>
+			<ContextMenu name="ПодсказкаКнопокКонтекстноеМеню" id="101"/>
+			<ExtendedTooltip name="ПодсказкаКнопокРасширеннаяПодсказка" id="102"/>
+		</LabelDecoration>
+		<CheckBoxField name="РежимJSONКнопок" id="60">
+			<DataPath>РежимJSONКнопок</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Расширенный режим (JSON)</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="РежимJSONКнопокКонтекстноеМеню" id="61"/>
+			<ExtendedTooltip name="РежимJSONКнопокРасширеннаяПодсказка" id="62"/>
+			<Events>
+				<Event name="OnChange">РежимJSONКнопокПриИзменении</Event>
+			</Events>
+		</CheckBoxField>
+		<LabelField name="ОшибкаКнопок" id="63">
+			<DataPath>ОшибкаКнопок</DataPath>
+			<ContextMenu name="ОшибкаКнопокКонтекстноеМеню" id="64"/>
+			<ExtendedTooltip name="ОшибкаКнопокРасширеннаяПодсказка" id="65"/>
+		</LabelField>
+		<Table name="ТаблицаКнопок" id="66">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Кнопки MAX</v8:content>
+				</v8:item>
+			</Title>
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<DataPath>ТаблицаКнопок</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТаблицаКнопокКонтекстноеМеню" id="67"/>
+			<AutoCommandBar name="ТаблицаКнопокКоманднаяПанель" id="69"/>
+			<ExtendedTooltip name="ТаблицаКнопокРасширеннаяПодсказка" id="68"/>
+			<SearchStringAddition name="ТаблицаКнопокСтрокаПоиска" id="91">
+				<AdditionSource>
+					<Item>ТаблицаКнопок</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаКнопокСтрокаПоискаКонтекстноеМеню" id="92"/>
+				<ExtendedTooltip name="ТаблицаКнопокСтрокаПоискаРасширеннаяПодсказка" id="93"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТаблицаКнопокСостояниеПросмотра" id="94">
+				<AdditionSource>
+					<Item>ТаблицаКнопок</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаКнопокСостояниеПросмотраКонтекстноеМеню" id="95"/>
+				<ExtendedTooltip name="ТаблицаКнопокСостояниеПросмотраРасширеннаяПодсказка" id="96"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТаблицаКнопокУправлениеПоиском" id="97">
+				<AdditionSource>
+					<Item>ТаблицаКнопок</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаКнопокУправлениеПоискомКонтекстноеМеню" id="98"/>
+				<ExtendedTooltip name="ТаблицаКнопокУправлениеПоискомРасширеннаяПодсказка" id="99"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnStartEdit">ТаблицаКнопокПриНачалеРедактирования</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="ТаблицаКнопокРяд" id="70">
+					<DataPath>ТаблицаКнопок.Ряд</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ряд</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТаблицаКнопокРядКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="ТаблицаКнопокРядРасширеннаяПодсказка" id="72"/>
+				</InputField>
+				<InputField name="ТаблицаКнопокДействие" id="73">
+					<DataPath>ТаблицаКнопок.Действие</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Действие</v8:content>
+						</v8:item>
+					</Title>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="ТаблицаКнопокДействиеКонтекстноеМеню" id="74"/>
+					<ExtendedTooltip name="ТаблицаКнопокДействиеРасширеннаяПодсказка" id="75"/>
+					<Events>
+						<Event name="OnChange">ТаблицаКнопокДействиеПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ТаблицаКнопокТекст" id="76">
+					<DataPath>ТаблицаКнопок.Текст</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Текст кнопки</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТаблицаКнопокТекстКонтекстноеМеню" id="77"/>
+					<ExtendedTooltip name="ТаблицаКнопокТекстРасширеннаяПодсказка" id="78"/>
+				</InputField>
+				<InputField name="ТаблицаКнопокПараметр" id="79">
+					<DataPath>ТаблицаКнопок.Параметр</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметр / payload</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТаблицаКнопокПараметрКонтекстноеМеню" id="80"/>
+					<ExtendedTooltip name="ТаблицаКнопокПараметрРасширеннаяПодсказка" id="81"/>
+				</InputField>
+				<InputField name="ТаблицаКнопокURL" id="82">
+					<DataPath>ТаблицаКнопок.URL</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>URL ссылки</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТаблицаКнопокURLКонтекстноеМеню" id="83"/>
+					<ExtendedTooltip name="ТаблицаКнопокURLРасширеннаяПодсказка" id="84"/>
+				</InputField>
+			</ChildItems>
+		</Table>
 		<InputField name="КнопкиMAX" id="57">
 			<DataPath>Объект.КнопкиMAX</DataPath>
 			<Title>
@@ -283,6 +416,64 @@
 			</Type>
 			<MainAttribute>true</MainAttribute>
 			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="ТаблицаКнопок" id="2">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<Columns>
+				<Column name="Ряд" id="1">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Действие" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Текст" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Параметр" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+					</Type>
+				</Column>
+				<Column name="URL" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ИсходныйJSON" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="РежимJSONКнопок" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ОшибкаКнопок" id="4">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ИсходныйJSONКнопок" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ИсходнаяТаблицаJSON" id="6">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+			</Type>
 		</Attribute>
 	</Attributes>
 </Form>

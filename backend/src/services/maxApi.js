@@ -74,15 +74,14 @@ export function normalizeOutgoingMessagePayload(payload) {
     };
 }
 
-export async function sendMaxMessage(payload) {
+async function postMaxApi(endpointPath, query, body) {
     if (!config.maxBotToken) {
         throw new Error("max_bot_token_not_configured");
     }
 
-    const normalized = normalizeOutgoingMessagePayload(payload);
     const timeout = createTimeoutSignal(config.maxRequestTimeoutMs);
-    const queryString = normalized.query.toString();
-    const url = `${appendMaxApiPath("/messages")}${queryString ? `?${queryString}` : ""}`;
+    const queryString = query.toString();
+    const url = `${appendMaxApiPath(endpointPath)}${queryString ? `?${queryString}` : ""}`;
 
     try {
         const response = await fetch(url, {
@@ -91,7 +90,7 @@ export async function sendMaxMessage(payload) {
                 Authorization: config.maxBotToken,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(normalized.body),
+            body: JSON.stringify(body),
             signal: timeout.signal,
         });
 
@@ -103,11 +102,50 @@ export async function sendMaxMessage(payload) {
             throw new Error(`max_api_request_failed:${response.status}:${reason}`);
         }
 
-        return {
-            client_message_id: normalized.client_message_id,
-            max_response: data,
-        };
+        return data;
     } finally {
         timeout.clear();
     }
+}
+
+export async function sendMaxMessage(payload) {
+    const normalized = normalizeOutgoingMessagePayload(payload);
+    return {
+        client_message_id: normalized.client_message_id,
+        max_response: await postMaxApi("/messages", normalized.query, normalized.body),
+    };
+}
+
+export function normalizeCallbackAnswerPayload(payload) {
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)
+        || typeof payload.callback_id !== "string" || !payload.callback_id.trim()) {
+        throw new Error("callback_id_required");
+    }
+
+    if (!payload.message || typeof payload.message !== "object" || Array.isArray(payload.message)) {
+        throw new Error("callback_message_required");
+    }
+
+    const message = buildSendMessageBody(payload.message);
+    if (!message.text && !message.attachments && !message.link) {
+        throw new Error("callback_message_required");
+    }
+
+    const query = new URLSearchParams({ callback_id: payload.callback_id });
+    if (typeof payload.disable_link_preview === "boolean") {
+        query.set("disable_link_preview", String(payload.disable_link_preview));
+    }
+
+    // Current MAX API answers callbacks by editing the source message, not by
+    // sending an obsolete notification-only response or by addressing a user.
+    return { query, body: { message } };
+}
+
+export async function answerMaxCallback(normalized) {
+    const data = await postMaxApi("/answers", normalized.query, normalized.body);
+    if (data?.success !== true) {
+        throw new Error("max_callback_answer_rejected");
+    }
+
+    return { max_response: data };
 }

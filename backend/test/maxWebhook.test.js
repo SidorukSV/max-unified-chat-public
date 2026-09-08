@@ -76,3 +76,37 @@ test("MAX webhook queues Update body for 1C polling", async (t) => {
     assert.deepEqual(pollResponse.json().messages[0].update, update);
     assert.equal(pollResponse.json().remaining, 0);
 });
+
+test("MAX callback preserves sender, payload and source message through polling", async (t) => {
+    messageQueueTestUtils.resetMemoryQueues();
+    const app = await buildApp();
+    const originalFetch = global.fetch;
+    global.fetch = async () => { assert.fail("webhook must queue, not call 1C or MAX"); };
+    t.after(async () => {
+        global.fetch = originalFetch;
+        await app.close();
+    });
+    const update = {
+        update_type: "message_callback", timestamp: 1788865200000,
+        callback: {
+            callback_id: "callback-appointment-1", timestamp: 1788865200000,
+            user: { user_id: 12345, first_name: "Пациент" }, payload: "opaque-appointment-action-token",
+        },
+        message: {
+            recipient: { chat_id: 67890, chat_type: "dialog" },
+            body: { mid: "mid.1", text: "Подтвердите приём" },
+        },
+    };
+    const webhook = await app.inject({
+        method: "POST", url: "/api/v1/max/webhook",
+        headers: { "X-Max-Bot-Api-Secret": "secret-test" }, payload: update,
+    });
+    assert.equal(webhook.statusCode, 200);
+    const polled = await app.inject({
+        method: "GET", url: "/api/v1/onec/messages/incoming",
+        headers: { "X-Onec-Api-Key": "onec-test-key" },
+    });
+    assert.equal(polled.json().messages.length, 1);
+    assert.deepEqual(polled.json().messages[0].update, update);
+    assert.equal(polled.json().messages[0].update_type, "message_callback");
+});

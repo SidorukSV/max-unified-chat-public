@@ -208,14 +208,19 @@ function parseResp(buffer) {
 }
 
 let redisClient;
+let connectionPromise;
 
 export async function getRedisClient() {
     if (!redisClient) {
         redisClient = new RedisClient(config.redisUrl, config.redisConnectTimeoutMs);
     }
 
-    if (!redisClient.isOpen) {
-        await redisClient.connect();
+    // Concurrent long polls must share one initialized connection, including AUTH.
+    if (!redisClient.isOpen || connectionPromise) {
+        if (!connectionPromise) {
+            connectionPromise = redisClient.connect().finally(() => { connectionPromise = null; });
+        }
+        await connectionPromise;
     }
 
     return redisClient;

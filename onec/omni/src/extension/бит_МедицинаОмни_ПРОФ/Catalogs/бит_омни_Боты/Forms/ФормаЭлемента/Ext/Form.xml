@@ -114,6 +114,11 @@
 			<CommandName>Form.Command.СоздатьРассылкиЗаписей</CommandName>
 			<ExtendedTooltip name="СоздатьРассылкиЗаписейРасширеннаяПодсказка" id="31"/>
 		</Button>
+		<Button name="СоздатьНапоминанияЗаписей" id="32">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.СоздатьНапоминанияЗаписей</CommandName>
+			<ExtendedTooltip name="СоздатьНапоминанияЗаписейРасширеннаяПодсказка" id="33"/>
+		</Button>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="Объект" id="1">
@@ -159,6 +164,22 @@
 				</v8:item>
 			</ToolTip>
 			<Action>СоздатьРассылкиЗаписей</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="СоздатьНапоминанияЗаписей" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать и включить напоминания за сутки и 2 часа</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Включить напоминания с подтверждением и отменой приема. Требуется работа задания обмена с VDS; допуск времени отправки — 15 минут.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СоздатьНапоминанияЗаписей</Action>
 			<Representation>Text</Representation>
 		</Command>
 	</Commands>

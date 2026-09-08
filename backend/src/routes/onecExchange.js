@@ -1,7 +1,10 @@
 import { config } from "../config.js";
 import { onecServiceAuthMiddleware } from "../middleware/serviceAuth.js";
-import { getIncomingQueueLength, popIncomingMaxUpdates, popIncomingMaxUpdatesLongPoll } from "../services/messageQueue.js";
-import { sendMaxMessage } from "../services/maxApi.js";
+import {
+    acknowledgeIncomingMaxUpdates, claimIncomingMaxUpdatesLongPoll, getIncomingQueueLength,
+    incomingLeaseMs, popIncomingMaxUpdates, popIncomingMaxUpdatesLongPoll,
+} from "../services/messageQueue.js";
+import { answerMaxCallback, normalizeCallbackAnswerPayload, sendMaxMessage } from "../services/maxApi.js";
 import { sendApiError } from "../utils/apiErrors.js";
 
 function parseLimit(rawLimit) {
@@ -39,12 +42,45 @@ function normalizeOutgoingBatch(body) {
 
 export async function onecExchangeRoutes(app) {
     app.get(
+        "/api/v1/onec/capabilities",
+        { preHandler: [onecServiceAuthMiddleware] },
+        async () => ({ incoming_ack: true, callback_answer: true })
+    );
+
+    app.post(
+        "/api/v1/onec/callbacks/answer",
+        { preHandler: [onecServiceAuthMiddleware] },
+        async (req, reply) => {
+            let normalized;
+            try {
+                normalized = normalizeCallbackAnswerPayload(req.body);
+            } catch (error) {
+                return sendApiError(reply, 400, error.message);
+            }
+
+            try {
+                return { ok: true, ...(await answerMaxCallback(normalized)) };
+            } catch {
+                req.log.error({ event: "max_callback_answer_failed" },
+                    "Failed to answer MAX callback");
+                return sendApiError(reply, 502, "max_callback_answer_failed");
+            }
+        }
+    );
+
+    app.get(
         "/api/v1/onec/messages/incoming",
         { preHandler: [onecServiceAuthMiddleware] },
-        async (req) => {
+        async (req, reply) => {
+            if (req.query?.ack !== undefined && !["true", "false"].includes(req.query.ack)) {
+                return sendApiError(reply, 400, "incoming_ack_mode_invalid");
+            }
             const limit = parseLimit(req.query?.limit);
             const waitMs = parseWaitMs(req.query?.waitMs);
-            const messages = waitMs > 0
+            const durable = req.query?.ack === "true";
+            const messages = durable
+                ? await claimIncomingMaxUpdatesLongPoll(limit, waitMs)
+                : waitMs > 0
                 ? await popIncomingMaxUpdatesLongPoll(limit, waitMs)
                 : await popIncomingMaxUpdates(limit);
             const remaining = await getIncomingQueueLength();
@@ -54,12 +90,30 @@ export async function onecExchangeRoutes(app) {
                 deliveredCount: messages.length,
                 remaining,
                 waitMs,
+                durable,
             }, "1C polled incoming MAX messages");
 
             return {
                 messages,
                 remaining,
+                ...(durable ? { lease_ms: incomingLeaseMs } : {}),
             };
+        }
+    );
+
+    app.post(
+        "/api/v1/onec/messages/incoming/ack",
+        { preHandler: [onecServiceAuthMiddleware] },
+        async (req, reply) => {
+            const receipts = req.body?.receipts;
+            if (!Array.isArray(receipts) || !receipts.length || receipts.length > config.onecPollMaxLimit
+                || receipts.some((receipt) => typeof receipt !== "string" || !receipt.trim() || receipt.length > 128)) {
+                return sendApiError(reply, 400, "incoming_receipts_invalid");
+            }
+            const acknowledged = await acknowledgeIncomingMaxUpdates(receipts);
+            req.log.info({ event: "onec_incoming_messages_acknowledged", acknowledged },
+                "1C acknowledged processed MAX events");
+            return { ok: true, acknowledged };
         }
     );
 
