@@ -12,6 +12,7 @@
 	</AutoCommandBar>
 	<Events>
 		<Event name="OnCreateAtServer" callType="After">бит_омни_ПриСозданииНаСервереПосле</Event>
+		<Event name="NotificationProcessing" callType="Before">бит_омни_ОбработкаОповещенияПеред</Event>
 		<Event name="NotificationProcessing" callType="After">бит_омни_ОбработкаОповещенияПосле</Event>
 	</Events>
 	<ChildItems>
