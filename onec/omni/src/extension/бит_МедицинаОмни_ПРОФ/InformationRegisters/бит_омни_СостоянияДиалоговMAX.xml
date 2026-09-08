@@ -306,6 +306,7 @@
 					<Comment/>
 					<Type>
 						<v8:Type>cfg:CatalogRef.Клиенты</v8:Type>
+						<v8:Type>cfg:CatalogRef.бит_омни_Контакты</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
 					<Format/>
