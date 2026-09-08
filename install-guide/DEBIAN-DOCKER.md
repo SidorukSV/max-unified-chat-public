@@ -56,6 +56,12 @@ CORS_ALLOWED_ORIGINS=https://chat.example.com
 - `MAX_WEBHOOK_SECRET` должен совпадать с секретом webhook-подписки MAX.
 - `MAX_BOT_TOKEN` не передавать в 1С, если 1С отправляет сообщения только через backend.
 
+Docker Compose подключает сертификат `scripts/certificates/russian-trusted-root-ca.pem`
+в контейнер backend и передает его Node.js через `NODE_EXTRA_CA_CERTS` для проверки
+сертификата API MAX. При собственном Compose-файле сохраните эту переменную и
+монтирование сертификата: иначе отправка может завершаться ошибкой
+`UNABLE_TO_GET_ISSUER_CERT_LOCALLY`. Проверку TLS отключать не нужно.
+
 ## 5. Настройка обмена в 1С
 
 В базе 1С нужно установить расширение `бит_МедицинаМАКС.cfe` и заполнить настройки раздела `MAX.VDS`:

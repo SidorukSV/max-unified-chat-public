@@ -23,10 +23,12 @@ services:
       REDIS_URL: redis://redis:6379
       BACKEND_LOG_FILE: /app/logs/backend.log
       BACKEND_LOG_LEVEL: ${BACKEND_LOG_LEVEL:-info}
+      NODE_EXTRA_CA_CERTS: /app/certificates/russian-trusted-root-ca.pem
     depends_on:
       - redis
     volumes:
       - ./logs:/app/logs
+      - ./scripts/certificates/russian-trusted-root-ca.pem:/app/certificates/russian-trusted-root-ca.pem:ro
 
   gateway:
     image: caddy:2-alpine
