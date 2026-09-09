@@ -59,7 +59,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.29</Version>
+			<Version>1.1.0.30</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -91,7 +91,6 @@
 			<CommonPicture>Рассылка_SMS_16х16</CommonPicture>
 			<CommonPicture>Оповещение</CommonPicture>
 			<CommonPicture>ОчередьНаЗаписьБледный</CommonPicture>
-			<CommonPicture>КрасныйКруг</CommonPicture>
 			<CommonPicture>СостояниеПользователя05</CommonPicture>
 			<SessionParameter>бит_омни_КешОбъектовДляРассылки</SessionParameter>
 			<Role>бит_омни_ОсновнаяРоль</Role>

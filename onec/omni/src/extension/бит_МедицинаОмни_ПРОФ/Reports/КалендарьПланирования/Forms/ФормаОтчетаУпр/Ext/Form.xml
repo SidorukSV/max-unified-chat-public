@@ -1817,10 +1817,6 @@
 							<ChildItems>
 								<PictureField name="ДокументыОчередиНеотработанный" id="781">
 									<TitleLocation>None</TitleLocation>
-									<ValuesPicture>
-										<xr:Ref>CommonPicture.КрасныйКруг</xr:Ref>
-										<xr:LoadTransparent>true</xr:LoadTransparent>
-									</ValuesPicture>
 									<ContextMenu name="ДокументыОчередиНеотработанныйКонтекстноеМеню" id="782"/>
 									<ExtendedTooltip name="ДокументыОчередиНеотработанныйРасширеннаяПодсказка" id="783"/>
 								</PictureField>
@@ -3750,10 +3746,6 @@
 								<ChildItems>
 									<PictureField name="ДокументыОчередиНеотработанный" id="781">
 										<TitleLocation>None</TitleLocation>
-										<ValuesPicture>
-											<xr:Ref>CommonPicture.КрасныйКруг</xr:Ref>
-											<xr:LoadTransparent>true</xr:LoadTransparent>
-										</ValuesPicture>
 										<ContextMenu name="ДокументыОчередиНеотработанныйКонтекстноеМеню" id="782"/>
 										<ExtendedTooltip name="ДокументыОчередиНеотработанныйРасширеннаяПодсказка" id="783"/>
 									</PictureField>
