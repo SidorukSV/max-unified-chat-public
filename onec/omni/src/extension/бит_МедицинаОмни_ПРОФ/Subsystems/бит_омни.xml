@@ -30,6 +30,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.бит_омни_СхемыКомпоновкиДанных</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.бит_омни_Команды</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.бит_омни_АктивныеРассылки</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.бит_омни_ОчередьСообщенийMAX</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.бит_омни_ЕдиныйЧат</xr:Item>
 			</Content>
 		</Properties>

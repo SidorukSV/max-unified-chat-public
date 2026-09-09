@@ -59,7 +59,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.28</Version>
+			<Version>1.1.0.29</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -102,6 +102,7 @@
 			<CommonModule>бит_омни_КнопкиMAX</CommonModule>
 			<CommonModule>бит_омни_НапоминанияMAX</CommonModule>
 			<CommonModule>бит_омни_ДатыСобытияРассылок</CommonModule>
+			<CommonModule>бит_омни_ОчередьСообщенийMAX</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAXПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСервер</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСерверСлужебный</CommonModule>
@@ -114,6 +115,7 @@
 			<CommonModule>бит_омни_РаботаССообщениямПовтИсп</CommonModule>
 			<CommonModule>бит_омни_СхемыКомпоновки</CommonModule>
 			<ScheduledJob>бит_омни_ОбменСообщениямиMAXЧерезVDS</ScheduledJob>
+			<ScheduledJob>бит_омни_ОтправкаОчередиMAX</ScheduledJob>
 			<HTTPService>бит_омни_Интеграция</HTTPService>
 			<EventSubscription>бит_омни_СправочникиПередЗаписью</EventSubscription>
 			<EventSubscription>бит_омни_ПриЗаписиОбъекта</EventSubscription>
@@ -157,6 +159,7 @@
 			<InformationRegister>бит_омни_ИсторияЧатовMAX</InformationRegister>
 			<InformationRegister>бит_омни_СостоянияДиалоговMAX</InformationRegister>
 			<InformationRegister>бит_омни_ДоставкаНапоминанийMAX</InformationRegister>
+			<InformationRegister>бит_омни_ОчередьСообщенийMAX</InformationRegister>
 			<AccumulationRegister>НакопленияПоСкидкам</AccumulationRegister>
 		</ChildObjects>
 	</Configuration>
