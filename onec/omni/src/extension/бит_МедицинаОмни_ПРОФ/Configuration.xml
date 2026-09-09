@@ -59,7 +59,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.27</Version>
+			<Version>1.1.0.28</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -101,6 +101,7 @@
 			<CommonModule>бит_омни_ИнтеграцияСMAX</CommonModule>
 			<CommonModule>бит_омни_КнопкиMAX</CommonModule>
 			<CommonModule>бит_омни_НапоминанияMAX</CommonModule>
+			<CommonModule>бит_омни_ДатыСобытияРассылок</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAXПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСервер</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСерверСлужебный</CommonModule>

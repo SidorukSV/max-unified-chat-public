@@ -198,6 +198,38 @@
 			<ContextMenu name="ШаблонКонтекстноеМеню" id="8"/>
 			<ExtendedTooltip name="ШаблонРасширеннаяПодсказка" id="9"/>
 		</InputField>
+		<UsualGroup name="ГруппаДатыСобытия" id="62">
+		<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Даты события — MAX</v8:content></v8:item></Title>
+		<Group>Vertical</Group><Representation>StrongSeparation</Representation><ShowTitle>true</ShowTitle>
+		<ExtendedTooltip name="ГруппаДатыСобытияРасширеннаяПодсказка" id="63"/>
+		<ChildItems>
+		<LabelDecoration name="ДатыСобытияПодсказка" id="64">
+		<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Для рассылок MAX «По расписанию». В каждой строке — отдельная дата отправки. Проверка при обмене, окно отправки — 15 минут. Старое расписание эту таблицу не ограничивает.</v8:content></v8:item></Title>
+		<ContextMenu name="ДатыСобытияПодсказкаКонтекстноеМеню" id="65"/><ExtendedTooltip name="ДатыСобытияПодсказкаРасширеннаяПодсказка" id="66"/>
+		</LabelDecoration>
+		<Table name="ДатыСобытия" id="61">
+		<DataPath>Объект.ДатыСобытия</DataPath>
+		<Height>6</Height>
+		<AutoInsertNewRow>true</AutoInsertNewRow>
+		<ContextMenu name="ДатыСобытияКонтекстноеМеню" id="67"/>
+		<AutoCommandBar name="ДатыСобытияКоманднаяПанель" id="68"/>
+		<ExtendedTooltip name="ДатыСобытияРасширеннаяПодсказка" id="69"/>
+		<SearchStringAddition name="ДатыСобытияСтрокаПоиска" id="90"><AdditionSource><Item>ДатыСобытия</Item><Type>SearchStringRepresentation</Type></AdditionSource><ContextMenu name="ДатыСобытияСтрокаПоискаКонтекстноеМеню" id="91"/><ExtendedTooltip name="ДатыСобытияСтрокаПоискаРасширеннаяПодсказка" id="92"/></SearchStringAddition>
+		<ViewStatusAddition name="ДатыСобытияСостояниеПросмотра" id="93"><AdditionSource><Item>ДатыСобытия</Item><Type>ViewStatusRepresentation</Type></AdditionSource><ContextMenu name="ДатыСобытияСостояниеПросмотраКонтекстноеМеню" id="94"/><ExtendedTooltip name="ДатыСобытияСостояниеПросмотраРасширеннаяПодсказка" id="95"/></ViewStatusAddition>
+		<SearchControlAddition name="ДатыСобытияУправлениеПоиском" id="96"><AdditionSource><Item>ДатыСобытия</Item><Type>SearchControl</Type></AdditionSource><ContextMenu name="ДатыСобытияУправлениеПоискомКонтекстноеМеню" id="97"/><ExtendedTooltip name="ДатыСобытияУправлениеПоискомРасширеннаяПодсказка" id="98"/></SearchControlAddition>
+		<Events><Event name="OnStartEdit">ДатыСобытияПриНачалеРедактирования</Event><Event name="OnActivateRow">ДатыСобытияПриАктивизацииСтроки</Event></Events>
+		<ChildItems><CheckBoxField name="ДатыСобытияИспользовать" id="46"><DataPath>Объект.ДатыСобытия.Использовать</DataPath><Title><v8:item><v8:lang>ru</v8:lang><v8:content>Вкл.</v8:content></v8:item></Title><ContextMenu name="ДатыСобытияИспользоватьКонтекстноеМеню" id="47"/><ExtendedTooltip name="ДатыСобытияИспользоватьРасширеннаяПодсказка" id="48"/></CheckBoxField>
+		<InputField name="ДатыСобытияШаблон" id="49"><DataPath>Объект.ДатыСобытия.Шаблон</DataPath><Title><v8:item><v8:lang>ru</v8:lang><v8:content>Шаблон расчёта</v8:content></v8:item></Title><ListChoiceMode>true</ListChoiceMode><ChoiceButton>true</ChoiceButton><ChoiceListButton>true</ChoiceListButton><TextEdit>false</TextEdit><ContextMenu name="ДатыСобытияШаблонКонтекстноеМеню" id="50"/><ExtendedTooltip name="ДатыСобытияШаблонРасширеннаяПодсказка" id="51"/><Events><Event name="OnChange">ДатыСобытияШаблонПриИзменении</Event></Events></InputField>
+		<InputField name="ДатыСобытияРеквизитКонтекста" id="52"><DataPath>Объект.ДатыСобытия.РеквизитКонтекста</DataPath><Title><v8:item><v8:lang>ru</v8:lang><v8:content>Реквизит контекста</v8:content></v8:item></Title><ChoiceButton>true</ChoiceButton><ChoiceListButton>true</ChoiceListButton><ContextMenu name="ДатыСобытияРеквизитКонтекстаКонтекстноеМеню" id="53"/><ExtendedTooltip name="ДатыСобытияРеквизитКонтекстаРасширеннаяПодсказка" id="54"/></InputField>
+		<InputField name="ДатыСобытияКоличествоЧасов" id="55"><DataPath>Объект.ДатыСобытия.КоличествоЧасов</DataPath><Title><v8:item><v8:lang>ru</v8:lang><v8:content>Часов</v8:content></v8:item></Title><ContextMenu name="ДатыСобытияКоличествоЧасовКонтекстноеМеню" id="56"/><ExtendedTooltip name="ДатыСобытияКоличествоЧасовРасширеннаяПодсказка" id="57"/></InputField>
+		<InputField name="ДатыСобытияАлгоритмРасчета" id="58"><DataPath>Объект.ДатыСобытия.АлгоритмРасчета</DataPath><Title><v8:item><v8:lang>ru</v8:lang><v8:content>Ручной алгоритм (BSL)</v8:content></v8:item></Title><MultiLine>true</MultiLine><ExtendedEdit>true</ExtendedEdit><Width>45</Width><ContextMenu name="ДатыСобытияАлгоритмРасчетаКонтекстноеМеню" id="59"/><ExtendedTooltip name="ДатыСобытияАлгоритмРасчетаРасширеннаяПодсказка" id="60"/></InputField></ChildItems>
+		</Table>
+		<LabelDecoration name="ДатыСобытияАлгоритмПодсказка" id="70">
+		<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Ручной алгоритм: присвойте Результат дату отправки или Неопределено. Данные — в Контекст. Например: Результат = Контекст.ДатаНачала - 24 * 3600; Это серверный BSL, не песочница; изменение разрешено только администратору.</v8:content></v8:item></Title>
+		<ContextMenu name="ДатыСобытияАлгоритмПодсказкаКонтекстноеМеню" id="71"/><ExtendedTooltip name="ДатыСобытияАлгоритмПодсказкаРасширеннаяПодсказка" id="72"/>
+		</LabelDecoration>
+		</ChildItems>
+		</UsualGroup>
 		<InputField name="Получатели" id="10">
 			<DataPath>Получатели</DataPath>
 			<ChooseType>false</ChooseType>
@@ -209,6 +241,7 @@
 			<ChooseType>false</ChooseType>
 			<ContextMenu name="КонтекстКонтекстноеМеню" id="14"/>
 			<ExtendedTooltip name="КонтекстРасширеннаяПодсказка" id="15"/>
+			<Events><Event name="OnChange">КонтекстПриИзменении</Event></Events>
 		</InputField>
 	</ChildItems>
 	<Attributes>
@@ -252,13 +285,13 @@
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Редактировать расписание</v8:content>
+					<v8:content>Старое расписание (не для дат MAX)</v8:content>
 				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Редактировать расписание</v8:content>
+					<v8:content>Стандартное расписание других каналов. Даты события MAX настраиваются в таблице и этим расписанием не ограничиваются.</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Picture>
@@ -266,7 +299,7 @@
 				<xr:LoadTransparent>true</xr:LoadTransparent>
 			</Picture>
 			<Action>РедактироватьРасписание</Action>
-			<Representation>Picture</Representation>
+			<Representation>TextPicture</Representation>
 		</Command>
 	</Commands>
 </Form>
