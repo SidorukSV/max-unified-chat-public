@@ -12,6 +12,13 @@ function createTimeoutSignal(timeoutMs) {
 
 function appendMaxApiPath(endpointPath) {
     const normalizedBaseUrl = String(config.maxApiBaseUrl || "").replace(/\/+$/, "");
+    let base;
+    try { base = new URL(normalizedBaseUrl); } catch { /* rejected below before fetch */ }
+    if (!base || base.protocol !== "https:" || base.username || base.password) {
+        const error = new Error("max_api_https_required");
+        error.delivery_status = "not_sent";
+        throw error;
+    }
     const normalizedEndpointPath = endpointPath.startsWith("/")
         ? endpointPath
         : `/${endpointPath}`;
@@ -81,9 +88,9 @@ async function postMaxApi(endpointPath, query, body) {
         throw error;
     }
 
-    const timeout = createTimeoutSignal(config.maxRequestTimeoutMs);
     const queryString = query.toString();
     const url = `${appendMaxApiPath(endpointPath)}${queryString ? `?${queryString}` : ""}`;
+    const timeout = createTimeoutSignal(config.maxRequestTimeoutMs);
 
     try {
         const response = await fetch(url, {
@@ -127,9 +134,19 @@ export async function sendMaxMessage(payload) {
         error.delivery_status = "not_sent";
         throw error;
     }
+    const response = await postMaxApi("/messages", normalized.query, normalized.body);
+    const message = response?.message ?? response;
+    const mid = (message?.body ?? message)?.mid;
+    if (response?.success === false || response?.ok === false || typeof mid !== "string" || !mid.trim()) {
+        const error = new Error("max_delivery_unconfirmed");
+        // HTTP 200 is not proof of delivery; preserve ambiguity rather than invite a duplicate.
+        error.delivery_status = "unknown";
+        throw error;
+    }
     return {
         client_message_id: normalized.client_message_id,
-        max_response: await postMaxApi("/messages", normalized.query, normalized.body),
+        delivery_status: "sent",
+        max_response: response,
     };
 }
 

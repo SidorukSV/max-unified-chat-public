@@ -94,7 +94,7 @@ test("1C outgoing message endpoint sends restricted MAX /messages request", asyn
             async json() {
                 return {
                     message: {
-                        id: "max-message-1",
+                        body: { mid: "max-message-1" },
                     },
                 };
             },

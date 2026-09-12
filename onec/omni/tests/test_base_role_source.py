@@ -53,7 +53,13 @@ class BaseRoleContracts(unittest.TestCase):
     def test_source_business_data_not_privileged(self):
         code = (ROOT / "CommonModules/бит_омни_ПодпискиНаСобытия/Ext/Module.bsl").read_text(encoding="utf-8-sig")
         self.assertNotIn("УстановитьПривилегированныйРежим", code)
-        self.assertIn("ПолучитьСписокОбъектовДляРассылок(ИмяОбъекта)", code)
+        self.assertIn("бит_ПодготовкаУведомленийMAX.ЗафиксироватьДоЗаписи(Источник)", code)
+        self.assertNotIn("ВыполнитьСхему", code)
+        preparation = (ROOT / "CommonModules/бит_ПодготовкаУведомленийMAX/Ext/Module.bsl").read_text(encoding="utf-8-sig")
+        after = preparation.split("Процедура ЗафиксироватьПослеЗаписи(", 1)[1].split("КонецПроцедуры", 1)[0]
+        self.assertLess(after.index("После = СнимокРеквизитов(Источник)"), after.index("УстановитьПривилегированныйРежим(Истина)"))
+        before = preparation.split("Процедура ЗафиксироватьДоЗаписи(", 1)[1].split("КонецПроцедуры", 1)[0]
+        self.assertLess(before.index("УстановитьПривилегированныйРежим(ПрежнийРежим)"), before.index("До = СнимокРеквизитов"))
 
 
 if __name__ == "__main__":

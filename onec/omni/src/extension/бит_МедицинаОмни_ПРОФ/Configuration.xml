@@ -44,7 +44,7 @@
 					<v8:content>БИТ.Медицина МАКС</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment>бит.Сидорук С.В. 12.09.2026</Comment>
 			<ConfigurationExtensionPurpose>Customization</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>бит_омни_</NamePrefix>
@@ -60,7 +60,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.35</Version>
+			<Version>1.1.0.36</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -103,10 +103,12 @@
 			<CommonTemplate>ОписаниеОбновлений</CommonTemplate>
 			<CommonModule>бит_омни_ИнтеграцияПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAX</CommonModule>
+			<CommonModule>бит_омни_НадежныйОбменMAX</CommonModule>
 			<CommonModule>бит_омни_КнопкиMAX</CommonModule>
 			<CommonModule>бит_омни_НапоминанияMAX</CommonModule>
 			<CommonModule>бит_омни_ДатыСобытияРассылок</CommonModule>
 			<CommonModule>бит_омни_ОчередьСообщенийMAX</CommonModule>
+			<CommonModule>бит_ПодготовкаУведомленийMAX</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAXПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСервер</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСерверСлужебный</CommonModule>
@@ -167,6 +169,10 @@
 			<InformationRegister>бит_омни_ДоставкаНапоминанийMAX</InformationRegister>
 			<InformationRegister>бит_омни_ДействияЗаписейMAX</InformationRegister>
 			<InformationRegister>бит_омни_ОчередьСообщенийMAX</InformationRegister>
+			<InformationRegister>бит_омни_ВходящиеСобытияMAX</InformationRegister>
+			<InformationRegister>бит_омни_ИсходящиеНамеренияMAX</InformationRegister>
+			<InformationRegister>бит_омни_ИдентичностиКонтактовMAX</InformationRegister>
+			<InformationRegister>бит_ПодготовкаРассылокMAX</InformationRegister>
 			<InformationRegister>бит_омни_ОтделенияПользователейMAX</InformationRegister>
 			<AccumulationRegister>НакопленияПоСкидкам</AccumulationRegister>
 			<ChartOfCharacteristicTypes>СвойстваОбъектов</ChartOfCharacteristicTypes>

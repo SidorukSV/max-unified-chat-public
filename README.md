@@ -16,14 +16,17 @@
 [обновление и настройка](install-guide/APPOINTMENT-REMINDERS.md).
 
 Настраиваемые даты рассылок, смещение до/после даты контекста и ручной алгоритм:
-[Событийная очередь и даты отправки — версия 1.1.0.29](install-guide/EVENT-DATES.md).
+[Событийная очередь и даты отправки — версия 1.1.0.36](install-guide/EVENT-DATES.md).
+
+Предрелизные исправления, локальная приёмка и оставшиеся ограничения:
+[расширение 1.1.0.36 / backend 1.0.7](install-guide/ACCEPTANCE-1.1.0.36.md).
 
 - `backend/` — Node.js/Fastify API-сервис.
 - `onec/` — исходники расширения 1С.
 - `deploy/caddy/` — reverse proxy с автоматическим TLS и проксированием API.
 - `scripts/subscribe-max-webhook.sh` — настройка webhook подписки MAX.
 - `install-guide/DEBIAN-DOCKER.md` — инструкция развертывания на Debian через Docker.
-- `ONEC-API.MD` — описание HTTP API 1С.
+- `ONEC-API.MD` — описание API backend, вызываемого из 1С.
 
 ## Технологии
 
@@ -32,7 +35,7 @@
 - Redis 7
 - Docker / Docker Compose
 - Caddy reverse proxy с автоматическим Let's Encrypt TLS
-- 1С HTTP-сервис/регламентный обмен
+- 1С: исходящий HTTPS-обмен регламентными заданиями, без входящей публикации 1С
 
 ## Быстрый запуск на сервере
 

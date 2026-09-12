@@ -16,6 +16,8 @@ backend/.env.production
 # Build artifacts
 dist/
 coverage/
+__pycache__/
+*.pyc
 .artifacts/
 .local-artifacts/
 

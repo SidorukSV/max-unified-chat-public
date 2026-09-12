@@ -13,10 +13,6 @@
 			</restrictionByCondition>
 		</right>
 		<right>
-			<name>Update</name>
-			<value>true</value>
-		</right>
-		<right>
 			<name>View</name>
 			<value>true</value>
 		</right>
@@ -29,7 +25,6 @@
 				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
-		<right><name>Update</name><value>true</value></right>
 		<right><name>View</name><value>true</value></right>
 	</object>
 	<object>
