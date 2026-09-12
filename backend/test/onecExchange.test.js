@@ -23,7 +23,10 @@ test("1C capability probe requires authorization and does not consume incoming e
         headers: { "X-Onec-Api-Key": "onec-test-key" },
     });
     assert.equal(supported.statusCode, 200);
-    assert.deepEqual(supported.json(), { incoming_ack: true, callback_answer: true });
+    assert.equal(supported.json().incoming_ack, true);
+    assert.equal(supported.json().callback_answer, true);
+    assert.equal(supported.json().attachment_upload, true);
+    assert.equal(supported.json().attachment_max_bytes, 5 * 1024 * 1024);
     assert.equal(await getIncomingQueueLength(), 1);
 });
 

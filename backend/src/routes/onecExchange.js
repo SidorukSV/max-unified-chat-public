@@ -6,6 +6,10 @@ import {
 } from "../services/messageQueue.js";
 import { answerMaxCallback, normalizeCallbackAnswerPayload, sendMaxMessage } from "../services/maxApi.js";
 import { sendApiError } from "../utils/apiErrors.js";
+import {
+    attachmentBodyLimit, attachmentExtensions, attachmentMaxBytes,
+    normalizeAttachmentUpload, uploadMaxAttachment,
+} from "../services/maxAttachments.js";
 
 function parseLimit(rawLimit) {
     const parsed = Number(rawLimit || config.onecPollDefaultLimit);
@@ -44,7 +48,28 @@ export async function onecExchangeRoutes(app) {
     app.get(
         "/api/v1/onec/capabilities",
         { preHandler: [onecServiceAuthMiddleware] },
-        async () => ({ incoming_ack: true, callback_answer: true })
+        async () => ({
+            incoming_ack: true, callback_answer: true,
+            attachment_upload: true, attachment_max_bytes: attachmentMaxBytes,
+            attachment_extensions: attachmentExtensions,
+        })
+    );
+
+    app.post(
+        "/api/v1/onec/attachments/upload",
+        { onRequest: [onecServiceAuthMiddleware], bodyLimit: attachmentBodyLimit },
+        async (req, reply) => {
+            let normalized;
+            try { normalized = normalizeAttachmentUpload(req.body); }
+            catch (error) { return sendApiError(reply, 400, error.message); }
+            try {
+                return { ok: true, ...(await uploadMaxAttachment(normalized)) };
+            } catch (error) {
+                req.log.warn({ event: "max_attachment_upload_failed" }, "MAX attachment upload failed");
+                return sendApiError(reply, error.message === "attachment_upload_busy" ? 429 : 502,
+                    error.message === "attachment_upload_busy" ? "attachment_upload_busy" : "max_attachment_upload_failed");
+            }
+        }
     );
 
     app.post(
@@ -136,14 +161,14 @@ export async function onecExchangeRoutes(app) {
                 } catch (error) {
                     req.log.error({
                         event: "max_outgoing_message_failed",
-                        err: error,
-                        clientMessageId: message?.client_message_id || message?.clientMessageId || null,
+                        deliveryStatus: error.delivery_status || "unknown",
                     }, "Failed to send outgoing message to MAX");
 
                     results.push({
                         ok: false,
                         client_message_id: message?.client_message_id || message?.clientMessageId || null,
-                        error: error?.message || "max_send_failed",
+                        error: error.code === "attachment_not_ready" ? "attachment_not_ready" : "max_send_failed",
+                        delivery_status: error.delivery_status || "unknown",
                     });
                 }
             }

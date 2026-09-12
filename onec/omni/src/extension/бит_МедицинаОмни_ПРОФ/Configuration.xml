@@ -60,7 +60,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.33</Version>
+			<Version>1.1.0.34</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -165,6 +165,7 @@
 			<InformationRegister>бит_омни_ИсторияЧатовMAX</InformationRegister>
 			<InformationRegister>бит_омни_СостоянияДиалоговMAX</InformationRegister>
 			<InformationRegister>бит_омни_ДоставкаНапоминанийMAX</InformationRegister>
+			<InformationRegister>бит_омни_ДействияЗаписейMAX</InformationRegister>
 			<InformationRegister>бит_омни_ОчередьСообщенийMAX</InformationRegister>
 			<InformationRegister>бит_омни_ОтделенияПользователейMAX</InformationRegister>
 			<AccumulationRegister>НакопленияПоСкидкам</AccumulationRegister>

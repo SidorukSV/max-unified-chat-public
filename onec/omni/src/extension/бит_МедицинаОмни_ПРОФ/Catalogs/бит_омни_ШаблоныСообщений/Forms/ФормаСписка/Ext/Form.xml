@@ -155,6 +155,11 @@
 					<CommandName>Form.Command.ЗагрузитьВыбранныеСтандартные</CommandName>
 					<ExtendedTooltip name="ЗагрузитьВыбранныеСтандартныеРасширеннаяПодсказка" id="36"/>
 				</Button>
+				<Button name="ОбновитьСтандартныеКнопкиНапоминаний" id="46">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ОбновитьСтандартныеКнопкиНапоминаний</CommandName>
+					<ExtendedTooltip name="ОбновитьСтандартныеКнопкиНапоминанийРасширеннаяПодсказка" id="47"/>
+				</Button>
 			</ChildItems>
 		</UsualGroup>
 	</ChildItems>
@@ -231,6 +236,15 @@
 				</v8:item>
 			</Title>
 			<Action>ЗагрузитьВыбранныеСтандартные</Action>
+		</Command>
+		<Command name="ОбновитьСтандартныеКнопкиНапоминаний" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить стандартные кнопки напоминаний</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОбновитьСтандартныеКнопкиНапоминаний</Action>
 		</Command>
 	</Commands>
 </Form>

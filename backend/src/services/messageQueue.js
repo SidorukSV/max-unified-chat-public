@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { config } from "../config.js";
 import { getRedisClient } from "../store/redisClient.js";
 import { acknowledgeIncomingScript, claimIncomingScript } from "./incomingQueueScripts.js";
+import { minimizeIncomingAttachments } from "./incomingAttachments.js";
 
 const memoryQueues = new Map();
 const memoryClaims = new Map();
@@ -41,7 +42,7 @@ export function createIncomingEnvelope(update) {
         received_at: new Date().toISOString(),
         source: "max_webhook",
         update_type: update?.update_type || null,
-        update,
+        update: minimizeIncomingAttachments(update),
     };
 }
 

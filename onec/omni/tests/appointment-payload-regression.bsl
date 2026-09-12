@@ -1,13 +1,24 @@
 // Чистые проверки: без записи объектов и HTTP.
 Идентификатор = "b3339998-ecc9-4ff7-9a13-784ab98a9a56";
-Для Каждого Действие Из СтрРазделить("confirm,cancel", ",") Цикл
+Для Каждого Действие Из СтрРазделить("confirm,cancel,reschedule", ",") Цикл
 	Параметры = бит_омни_ИнтеграцияСMAX.РазобратьКомандуЗаписиMAX(
 		"appointment_" + Идентификатор + "_20300101123000_" + Действие);
 	Если Параметры = Неопределено Или Параметры.Действие <> Действие Тогда
 		ВызватьИсключение "Valid callback rejected";
 	КонецЕсли;
 КонецЦикла;
+Для Каждого Действие Из СтрРазделить("cancelYes,cancelNo", ",") Цикл
+	Параметры = бит_омни_ИнтеграцияСMAX.РазобратьКомандуЗаписиMAX(
+		"appointment_" + Идентификатор + "_20300101123000_" + Действие + "-012345abcdef");
+	Если Параметры = Неопределено Или Параметры.Действие <> Действие
+		Или Параметры.КлючОтмены <> "012345abcdef" Тогда
+		ВызватьИсключение "Valid confirmation callback rejected";
+	КонецЕсли;
+КонецЦикла;
 Плохие = Новый Массив;
+Плохие.Добавить("appointment_" + Идентификатор + "_20300101123000_cancelYes");
+Плохие.Добавить("appointment_" + Идентификатор + "_20300101123000_cancelYes-012345abcdeg");
+Плохие.Добавить("appointment_" + Идентификатор + "_20300101123000_cancelNo-012345abcdef-extra");
 Плохие.Добавить("appointment_" + Идентификатор + "_confirm");
 Плохие.Добавить("appointment_" + Идентификатор + "_20300101123000_delete");
 Плохие.Добавить("appointment_" + Идентификатор + "_20300101123000_confirm_extra");
@@ -33,4 +44,4 @@
 	Или Кнопки[0][0].payload <> "appointment_" + Идентификатор + "_20300101123000_confirm" Тогда
 	ВызватьИсключение "JSON value substitution or built-in appointment fields failed";
 КонецЕсли;
-Результат = "PASS: confirm/cancel parsing; malformed/legacy rejection; JSON escaping; built-in fields for existing templates. No writes or HTTP.";
+Результат = "PASS: appointment actions and nonce parsing; malformed/legacy rejection; JSON escaping. No writes or HTTP.";

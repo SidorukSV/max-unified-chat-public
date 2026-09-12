@@ -446,6 +446,16 @@
 													</Title>
 													<ExtendedTooltip name="ОтправитьКнопкаРасширеннаяПодсказка" id="86"/>
 												</Button>
+												<Button name="бит_ОтправитьФайлКнопка" id="437">
+													<CommandName>Form.Command.бит_ОтправитьФайл</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Отправить файл…</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="бит_ОтправитьФайлКнопкаРасширеннаяПодсказка" id="438"/>
+												</Button>
 											</ChildItems>
 										</UsualGroup>
 									</ChildItems>
@@ -1420,6 +1430,9 @@
 				</v8:item>
 			</Title>
 			<Action>ОткрытьКарточкуПациентаОбработка</Action>
+		</Command>
+		<Command name="бит_ОтправитьФайл" id="213">
+			<Action>бит_ОтправитьФайлОбработка</Action>
 		</Command>
 	</Commands>
 </Form>
