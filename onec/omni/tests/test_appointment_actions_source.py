@@ -15,6 +15,20 @@ def function(source, name):
 
 
 class AppointmentActionsSourceTests(unittest.TestCase):
+    def test_reschedule_property_reference_can_be_persisted(self):
+        ns = {"m": "http://v8.1c.ru/8.3/MDClasses", "v": "http://v8.1c.ru/8.1/data/core"}
+        settings = ET.parse(SRC / "InformationRegisters/бит_омни_ЗначенияНастроек.xml")
+        value = settings.find(".//m:Resource/m:Properties[m:Name='Значение']", ns)
+        types = {item.text for item in value.findall("m:Type/v:Type", ns)}
+        self.assertIn("cfg:CatalogRef.ВидыСостоянийЗаявок", types)
+        self.assertIn("cfg:ChartOfCharacteristicTypesRef.СвойстваОбъектов", types)
+        configuration = ET.parse(SRC / "Configuration.xml")
+        self.assertIn("СвойстваОбъектов", {
+            item.text for item in configuration.findall(".//m:ChildObjects/m:ChartOfCharacteristicTypes", ns)
+        })
+        property_type = ET.parse(SRC / "ChartsOfCharacteristicTypes/СвойстваОбъектов.xml")
+        self.assertEqual(property_type.find(".//m:ObjectBelonging", ns).text, "Adopted")
+
     def test_state_is_independent_and_scoped_to_owner_version(self):
         tree = ET.parse(SRC / "InformationRegisters/бит_омни_ДействияЗаписейMAX.xml")
         ns = {"m": "http://v8.1c.ru/8.3/MDClasses"}
