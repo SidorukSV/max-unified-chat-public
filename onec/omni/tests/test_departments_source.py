@@ -38,10 +38,16 @@ class DepartmentSourceTests(unittest.TestCase):
         )
 
     def test_full_access_does_not_use_default_extension_role(self):
-        access = routine(self.access, "ПараметрыДоступа")
+        access = routine(self.access, "ПолучитьПараметрыДоступаMAX")
         self.assertIn('РольДоступна("ПолныеПрава")', access)
         self.assertNotIn('РольДоступна("бит_омни_ОсновнаяРоль")', access)
         self.assertIn("Пользователи.ТекущийПользователь()", access)
+
+    def test_access_helper_does_not_shadow_platform_function(self):
+        self.assertNotRegex(self.access, r"\bПараметрыДоступа\s*\(")
+        self.assertNotRegex(self.chat, r"\bПараметрыДоступа\s*\(")
+        self.assertEqual(self.access.count("ПолучитьПараметрыДоступаMAX()"), 3)
+        self.assertEqual(self.chat.count("бит_омни_ОтделенияMAXСервер.ПолучитьПараметрыДоступаMAX()"), 3)
 
     def test_empty_department_fails_closed(self):
         check = routine(self.access, "ПроверитьДоступККонтакту")

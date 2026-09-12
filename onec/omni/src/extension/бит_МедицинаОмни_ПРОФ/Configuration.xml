@@ -60,7 +60,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.32</Version>
+			<Version>1.1.0.33</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
