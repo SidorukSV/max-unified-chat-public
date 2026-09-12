@@ -8,6 +8,9 @@
 		<right>
 			<name>Read</name>
 			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
 		</right>
 		<right>
 			<name>Update</name>
@@ -20,8 +23,21 @@
 	</object>
 	<object>
 		<name>InformationRegister.бит_омни_ОчередьСообщенийMAX</name>
-		<right><name>Read</name><value>true</value></right>
+		<right>
+			<name>Read</name><value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
+		</right>
 		<right><name>Update</name><value>true</value></right>
 		<right><name>View</name><value>true</value></right>
+	</object>
+	<object>
+		<name>SessionParameter.бит_омни_ОтделениеПользователяMAX</name>
+		<right><name>Get</name><value>true</value></right>
+	</object>
+	<object>
+		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
+		<right><name>Get</name><value>true</value></right>
 	</object>
 </Rights>

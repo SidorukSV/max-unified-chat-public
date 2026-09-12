@@ -73,6 +73,12 @@
 			<ContextMenu name="БотКонтекстноеМеню" id="17"/>
 			<ExtendedTooltip name="БотРасширеннаяПодсказка" id="18"/>
 		</InputField>
+		<InputField name="ОтделениеMAX" id="24">
+			<DataPath>Объект.ОтделениеMAX</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<ContextMenu name="ОтделениеMAXКонтекстноеМеню" id="25"/>
+			<ExtendedTooltip name="ОтделениеMAXРасширеннаяПодсказка" id="26"/>
+		</InputField>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="Объект" id="1">

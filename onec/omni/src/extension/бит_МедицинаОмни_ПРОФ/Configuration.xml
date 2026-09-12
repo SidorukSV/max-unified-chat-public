@@ -59,7 +59,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.30</Version>
+			<Version>1.1.0.31</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -93,8 +93,11 @@
 			<CommonPicture>ОчередьНаЗаписьБледный</CommonPicture>
 			<CommonPicture>СостояниеПользователя05</CommonPicture>
 			<SessionParameter>бит_омни_КешОбъектовДляРассылки</SessionParameter>
+			<SessionParameter>бит_омни_ОтделениеПользователяMAX</SessionParameter>
+			<SessionParameter>бит_омни_ПолныеПраваMAX</SessionParameter>
 			<Role>бит_омни_ОсновнаяРоль</Role>
 			<Role>бит_омни_НапоминанияMAX</Role>
+			<Role>бит_омни_ОператорОтделенияMAX</Role>
 			<CommonTemplate>ОписаниеОбновлений</CommonTemplate>
 			<CommonModule>бит_омни_ИнтеграцияПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAX</CommonModule>
@@ -113,6 +116,7 @@
 			<CommonModule>бит_омни_РаботаССообщениями</CommonModule>
 			<CommonModule>бит_омни_РаботаССообщениямПовтИсп</CommonModule>
 			<CommonModule>бит_омни_СхемыКомпоновки</CommonModule>
+			<CommonModule>бит_омни_ОтделенияMAXСервер</CommonModule>
 			<ScheduledJob>бит_омни_ОбменСообщениямиMAXЧерезVDS</ScheduledJob>
 			<ScheduledJob>бит_омни_ОтправкаОчередиMAX</ScheduledJob>
 			<HTTPService>бит_омни_Интеграция</HTTPService>
@@ -137,6 +141,7 @@
 			<Catalog>бит_омни_Действия</Catalog>
 			<Catalog>бит_омни_Рассылки</Catalog>
 			<Catalog>бит_омни_ШаблоныСообщений</Catalog>
+			<Catalog>бит_омни_ОтделенияMAX</Catalog>
 			<Document>Анкета</Document>
 			<Document>Заявка</Document>
 			<Document>Прием</Document>
@@ -159,6 +164,7 @@
 			<InformationRegister>бит_омни_СостоянияДиалоговMAX</InformationRegister>
 			<InformationRegister>бит_омни_ДоставкаНапоминанийMAX</InformationRegister>
 			<InformationRegister>бит_омни_ОчередьСообщенийMAX</InformationRegister>
+			<InformationRegister>бит_омни_ОтделенияПользователейMAX</InformationRegister>
 			<AccumulationRegister>НакопленияПоСкидкам</AccumulationRegister>
 		</ChildObjects>
 	</Configuration>
