@@ -56,6 +56,17 @@
 				</Title>
 				<ExtendedTooltip name="КнопкаЗакрытьДиалогРасширеннаяПодсказка" id="211"/>
 			</Button>
+			<Button name="КнопкаАрхивЧатов" id="501">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ОткрытьАрхивЧатов</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Архив чатов</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="КнопкаАрхивЧатовРасширеннаяПодсказка" id="502"/>
+			</Button>
 			<Button name="Закрыть" id="5">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.StandardCommand.Close</CommandName>
@@ -1433,6 +1444,15 @@
 		</Command>
 		<Command name="бит_ОтправитьФайл" id="213">
 			<Action>бит_ОтправитьФайлОбработка</Action>
+		</Command>
+		<Command name="ОткрытьАрхивЧатов" id="503">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Архив чатов</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОткрытьАрхивЧатовОбработка</Action>
 		</Command>
 	</Commands>
 </Form>

@@ -4,7 +4,10 @@ import {
     acknowledgeIncomingMaxUpdates, claimIncomingMaxUpdatesLongPoll, getIncomingQueueLength,
     incomingLeaseMs, popIncomingMaxUpdates, popIncomingMaxUpdatesLongPoll,
 } from "../services/messageQueue.js";
-import { answerMaxCallback, normalizeCallbackAnswerPayload, sendMaxMessage } from "../services/maxApi.js";
+import {
+    answerMaxCallback, normalizeBotCommandsPayload, normalizeCallbackAnswerPayload,
+    sendMaxMessage, updateMaxBotCommands,
+} from "../services/maxApi.js";
 import { sendApiError } from "../utils/apiErrors.js";
 import {
     attachmentBodyLimit, attachmentExtensions, attachmentMaxBytes,
@@ -49,10 +52,25 @@ export async function onecExchangeRoutes(app) {
         "/api/v1/onec/capabilities",
         { preHandler: [onecServiceAuthMiddleware] },
         async () => ({
-            incoming_ack: true, callback_answer: true,
+            incoming_ack: true, callback_answer: true, bot_commands: true,
             attachment_upload: true, attachment_max_bytes: attachmentMaxBytes,
             attachment_extensions: attachmentExtensions,
         })
+    );
+
+    app.post(
+        "/api/v1/onec/bot/commands",
+        { preHandler: [onecServiceAuthMiddleware] },
+        async (req, reply) => {
+            try { normalizeBotCommandsPayload(req.body); }
+            catch (error) { return sendApiError(reply, 400, error.message); }
+            try {
+                return { ok: true, ...(await updateMaxBotCommands(req.body)) };
+            } catch {
+                req.log.error({ event: "max_bot_commands_failed" }, "Failed to update MAX bot commands");
+                return sendApiError(reply, 502, "max_bot_commands_failed");
+            }
+        }
     );
 
     app.post(

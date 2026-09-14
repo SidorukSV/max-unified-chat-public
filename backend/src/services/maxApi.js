@@ -81,7 +81,7 @@ export function normalizeOutgoingMessagePayload(payload) {
     };
 }
 
-async function postMaxApi(endpointPath, query, body) {
+async function requestMaxApi(method, endpointPath, query, body) {
     if (!config.maxBotToken) {
         const error = new Error("max_bot_token_not_configured");
         error.delivery_status = "not_sent";
@@ -94,7 +94,7 @@ async function postMaxApi(endpointPath, query, body) {
 
     try {
         const response = await fetch(url, {
-            method: "POST",
+            method,
             redirect: "error",
             headers: {
                 Authorization: config.maxBotToken,
@@ -125,6 +125,10 @@ async function postMaxApi(endpointPath, query, body) {
     } finally {
         timeout.clear();
     }
+}
+
+async function postMaxApi(endpointPath, query, body) {
+    return requestMaxApi("POST", endpointPath, query, body);
 }
 
 export async function sendMaxMessage(payload) {
@@ -215,4 +219,43 @@ export async function answerMaxCallback(normalized) {
     }
 
     return { max_response: data };
+}
+
+const supportedBotCommands = new Map([
+    ["patient", "Выбрать пациента"],
+    ["department", "Выбрать отделение"],
+]);
+
+export function normalizeBotCommandsPayload(payload) {
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)
+        || Object.keys(payload).some((key) => key !== "commands")
+        || !Array.isArray(payload.commands) || payload.commands.length !== supportedBotCommands.size) {
+        throw new Error("bot_commands_invalid");
+    }
+
+    const seen = new Set();
+    const commands = payload.commands.map((command) => {
+        if (!command || typeof command !== "object" || Array.isArray(command)
+            || Object.keys(command).some((key) => !["name", "description"].includes(key))
+            || typeof command.name !== "string" || typeof command.description !== "string"
+            || supportedBotCommands.get(command.name) !== command.description || seen.has(command.name)) {
+            throw new Error("bot_commands_invalid");
+        }
+        seen.add(command.name);
+        return { name: command.name, description: command.description };
+    });
+
+    if (seen.size !== supportedBotCommands.size) throw new Error("bot_commands_invalid");
+    return { commands };
+}
+
+export async function updateMaxBotCommands(payload) {
+    const normalized = normalizeBotCommandsPayload(payload);
+    const response = await requestMaxApi("PATCH", "/me/commands", new URLSearchParams(), normalized);
+    if (!Array.isArray(response?.commands)) {
+        const error = new Error("max_bot_commands_unconfirmed");
+        error.delivery_status = "unknown";
+        throw error;
+    }
+    return { commands: response.commands };
 }

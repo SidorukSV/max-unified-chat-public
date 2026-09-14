@@ -16,7 +16,7 @@ def function(name):
 class ChatTemplateContracts(unittest.TestCase):
     def test_editable_chat_standards_exist(self):
         standards = function("СтандартныеШаблоны")
-        for identifier in ("MAX_DEPARTMENT_SELECTION", "MAX_APPOINTMENT_CANCEL_CONFIRMATION",
+        for identifier in ("MAX_DEPARTMENT_SELECTION", "MAX_PATIENT_SELECTION", "MAX_APPOINTMENT_CANCEL_CONFIRMATION",
                            "MAX_ATTACHMENTS_REJECTED"):
             self.assertEqual(standards.count('"' + identifier + '"'), 1)
         self.assertIn('"ПочтаКлиники"', standards)

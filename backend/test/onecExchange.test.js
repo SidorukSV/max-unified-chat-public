@@ -25,9 +25,75 @@ test("1C capability probe requires authorization and does not consume incoming e
     assert.equal(supported.statusCode, 200);
     assert.equal(supported.json().incoming_ack, true);
     assert.equal(supported.json().callback_answer, true);
+    assert.equal(supported.json().bot_commands, true);
     assert.equal(supported.json().attachment_upload, true);
     assert.equal(supported.json().attachment_max_bytes, 5 * 1024 * 1024);
     assert.equal(await getIncomingQueueLength(), 1);
+});
+
+test("1C configures the fixed patient and department command menu", async (t) => {
+    const app = await buildApp();
+    const originalFetch = global.fetch;
+    const calls = [];
+    global.fetch = async (url, options) => {
+        calls.push({ url, options });
+        return {
+            ok: true,
+            status: 200,
+            json: async () => ({ commands: JSON.parse(options.body).commands }),
+        };
+    };
+    t.after(async () => {
+        global.fetch = originalFetch;
+        await app.close();
+    });
+
+    const commands = [
+        { name: "patient", description: "Выбрать пациента" },
+        { name: "department", description: "Выбрать отделение" },
+    ];
+    const response = await app.inject({
+        method: "POST",
+        url: "/api/v1/onec/bot/commands",
+        headers: { "X-Onec-Api-Key": "onec-test-key" },
+        payload: { commands },
+    });
+    assert.equal(response.statusCode, 200);
+    assert.deepEqual(response.json(), { ok: true, commands });
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].url, "https://platform-api2.max.ru/me/commands");
+    assert.equal(calls[0].options.method, "PATCH");
+    assert.equal(calls[0].options.headers.Authorization, "max-token-test");
+    assert.deepEqual(JSON.parse(calls[0].options.body), { commands });
+});
+
+test("1C cannot replace the fixed bot menu with arbitrary commands", async (t) => {
+    const app = await buildApp();
+    const originalFetch = global.fetch;
+    global.fetch = async () => { assert.fail("invalid commands must not reach MAX"); };
+    t.after(async () => {
+        global.fetch = originalFetch;
+        await app.close();
+    });
+
+    for (const payload of [
+        {},
+        { commands: [] },
+        { commands: [{ name: "patient", description: "Подмена" }] },
+        { commands: [
+            { name: "patient", description: "Выбрать пациента" },
+            { name: "evil", description: "Произвольная команда" },
+        ] },
+    ]) {
+        const response = await app.inject({
+            method: "POST",
+            url: "/api/v1/onec/bot/commands",
+            headers: { Authorization: "Bearer onec-test-key" },
+            payload,
+        });
+        assert.equal(response.statusCode, 400);
+        assert.equal(response.json().error, "bot_commands_invalid");
+    }
 });
 
 test("1C incoming polling requires service API key", async (t) => {

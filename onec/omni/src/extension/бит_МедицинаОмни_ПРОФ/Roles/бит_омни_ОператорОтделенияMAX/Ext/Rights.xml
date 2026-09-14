@@ -46,6 +46,20 @@
 		</right>
 	</object>
 	<object>
+		<name>InformationRegister.бит_омни_АрхивЧатовMAX</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.бит_омни_СостоянияДиалоговMAX</name>
 		<right>
 			<name>Read</name>
