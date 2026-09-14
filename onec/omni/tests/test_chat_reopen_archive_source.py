@@ -65,6 +65,18 @@ class ChatReopenArchiveSourceTests(unittest.TestCase):
         self.assertIn('ИмяКоманды = "patient"', command)
         self.assertIn('ИмяКоманды = "department"', command)
 
+    def test_chat_title_keeps_max_sender_name_after_patient_is_selected(self):
+        title = routine(self.form, "ПредставлениеСобеседникаMAX")
+        self.assertLess(title.index("ИмяMAX"), title.index("ЗначениеЗаполнено(Пациент)"))
+        self.assertIn("ПредставлениеСобеседникаMAX(\n\t\t\tСтрокаИсточника.ИмяMAX", self.form)
+        header = routine(self.form, "ОбновитьШапкуЧатаНаСервере")
+        self.assertIn("ПредставлениеСобеседникаMAX(ИмяВMAX, ТекущийПациент)", header)
+        self.assertIn('СтрШаблон("пациент: %1", ТекущийПациент)', header)
+        self.assertNotIn(
+            "?(ЗначениеЗаполнено(ТекущийПациент), Строка(ТекущийПациент), ИмяВMAX)",
+            header,
+        )
+
     def test_archive_is_privileged_but_not_client_callable(self):
         meta = ET.parse(EXT / "CommonModules/бит_омни_АрхивЧатовMAX.xml")
         self.assertEqual(meta.findtext(".//m:Server", namespaces=NS), "true")
