@@ -19,7 +19,7 @@
 [Событийная очередь и даты отправки — версия 1.1.0.36](install-guide/EVENT-DATES.md).
 
 Повторная маршрутизация, выбор пациента, меню бота и архив чатов:
-[расширение 1.1.0.38 / backend 1.0.8](install-guide/ACCEPTANCE-1.1.0.38.md).
+[расширение 1.1.0.39 / backend 1.0.8](install-guide/ACCEPTANCE-1.1.0.39.md).
 
 - `backend/` — Node.js/Fastify API-сервис.
 - `onec/` — исходники расширения 1С.

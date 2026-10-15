@@ -57,10 +57,17 @@ class DepartmentSourceTests(unittest.TestCase):
 
     def test_assignment_and_history_same_transaction(self):
         assign = routine(self.access, "ЗакрепитьОтделение")
-        self.assertLess(assign.index("Блокировка.Заблокировать()"), assign.index("Контакт.ПолучитьОбъект()"))
-        self.assertIn("ЗначениеЗаполнено(ОбъектКонтакта.ОтделениеMAX)", assign)
-        self.assertLess(assign.index("ЗаписатьВыборОтделенияMAX"), assign.index("ЗафиксироватьТранзакцию()"))
+        self.assertLess(assign.index("ТранзакцияАктивна()"), assign.index("НачатьТранзакцию()"))
+        self.assertIn("ЗакрепитьОтделениеВТранзакции", assign)
         self.assertIn("ОтменитьТранзакцию()", assign)
+        inner = routine(self.access, "ЗакрепитьОтделениеВТранзакции")
+        self.assertLess(inner.index("Блокировка.Заблокировать()"), inner.index("Контакт.ПолучитьОбъект()"))
+        self.assertIn("ЗначениеЗаполнено(ОбъектКонтакта.ОтделениеMAX)", inner)
+        self.assertLess(inner.index("ОбъектКонтакта.Записать()"), inner.index("ЗаписатьВыборОтделенияMAX"))
+        self.assertIn("УстановитьПривилегированныйРежим(Истина)", inner)
+        self.assertEqual(inner.count("УстановитьПривилегированныйРежим(БылПривилегированныйРежим)"), 2)
+        self.assertNotIn("НачатьТранзакцию()", inner)
+        self.assertNotIn("ОтменитьТранзакцию()", inner)
 
     def test_callback_requires_existing_own_signed_contact(self):
         callback = routine(self.transport, "ОбработатьВыборОтделенияMAX")

@@ -77,14 +77,16 @@ class ChatReopenArchiveSourceTests(unittest.TestCase):
             header,
         )
 
-    def test_archive_is_privileged_but_not_client_callable(self):
+    def test_archive_checks_access_before_narrow_privilege_and_is_not_client_callable(self):
         meta = ET.parse(EXT / "CommonModules/бит_омни_АрхивЧатовMAX.xml")
         self.assertEqual(meta.findtext(".//m:Server", namespaces=NS), "true")
-        self.assertEqual(meta.findtext(".//m:Privileged", namespaces=NS), "true")
+        self.assertEqual(meta.findtext(".//m:Privileged", namespaces=NS), "false")
         self.assertEqual(meta.findtext(".//m:ServerCall", namespaces=NS), "false")
         archive = routine(self.archive, "АрхивироватьДиалог")
-        self.assertLess(archive.index("ПроверитьДоступККонтакту"), archive.index("ЗаблокироватьИсториюДиалога"))
-        self.assertLess(archive.index("НаборАрхива.Записать()"), archive.index("НаборИстории.Очистить()"))
+        self.assertLess(archive.index("ПроверитьДоступККонтакту"), archive.index("УстановитьПривилегированныйРежим(Истина)"))
+        self.assertEqual(archive.count("УстановитьПривилегированныйРежим(БылПривилегированныйРежим)"), 2)
+        privileged = routine(self.archive, "АрхивироватьДиалогПривилегированно")
+        self.assertLess(privileged.index("НаборАрхива.Записать()"), privileged.index("НаборИстории.Очистить()"))
 
     def test_close_state_and_archive_share_one_transaction(self):
         close = routine(self.form, "ЗакрытьДиалогНаСервере")
