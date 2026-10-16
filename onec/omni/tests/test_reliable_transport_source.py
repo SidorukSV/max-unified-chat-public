@@ -56,8 +56,14 @@ class ReliableTransportTests(unittest.TestCase):
 
     def test_contact_uniqueness_and_relink_preflight(self):
         contact = routine(self.reliable, "ПолучитьИлиСоздатьКонтакт")
-        self.assertLess(contact.index("Блокировка.Заблокировать"), contact.index("Запрос.Выполнить"))
+        self.assertLess(contact.index("Блокировка.Заблокировать"), contact.index("КонтактыПоИдентификаторуMAX"))
+        self.assertLess(contact.index("КонтактИзРегистраИдентичностейMAX"), contact.index("КонтактыПоИдентификаторуMAX"))
         self.assertIn("Контакты.Количество() > 1", contact)
+        existing = routine(self.reliable, "ПолучитьСуществующийКонтакт")
+        self.assertLess(existing.index("КонтактИзРегистраИдентичностейMAX"), existing.index("КонтактыПоИдентификаторуMAX"))
+        identity = routine(self.reliable, "КонтактИзРегистраИдентичностейMAX")
+        self.assertIn("бит_омни_ИдентичностиКонтактовMAX", identity)
+        self.assertIn("Контакт.Идентификатор <> Идентификатор", identity)
         send = routine(self.transport, "бит_ОтправитьНамерениеMAX")
         self.assertIn('"ОтпечатокПолучателя"', send)
         self.assertIn("Намерение.Контакт.Бот <> Намерение.Бот", send)

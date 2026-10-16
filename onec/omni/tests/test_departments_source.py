@@ -71,8 +71,7 @@ class DepartmentSourceTests(unittest.TestCase):
 
     def test_callback_requires_existing_own_signed_contact(self):
         callback = routine(self.transport, "ОбработатьВыборОтделенияMAX")
-        self.assertIn("ВЫБРАТЬ ПЕРВЫЕ 2", callback)
-        self.assertIn("Контакты.Количество() = 1", callback)
+        self.assertIn("ПолучитьСуществующийКонтакт", callback)
         self.assertLess(callback.index("ПодтвержденныйТелефонКонтактаMAX"), callback.index("ЗакрепитьОтделение"))
         self.assertNotIn("ПолучитьКонтактПоUser", callback)
 
