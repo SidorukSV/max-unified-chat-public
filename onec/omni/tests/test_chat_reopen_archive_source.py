@@ -65,6 +65,16 @@ class ChatReopenArchiveSourceTests(unittest.TestCase):
         self.assertIn('ИмяКоманды = "patient"', command)
         self.assertIn('ИмяКоманды = "department"', command)
 
+    def test_bot_start_never_archives_active_chat(self):
+        command = routine(self.integration, "ОбработатьКоманду")
+        start_branch = command[command.index('ИмяКоманды = "start"'):command.index('ИмяКоманды = "patient"')]
+        self.assertIn("НачатьВыборОтделенияMAX", start_branch)
+        self.assertNotIn("АрхивироватьДиалог", start_branch)
+        restart = routine(self.integration, "бит_НачатьВыборОтделенияЗановоMAX")
+        self.assertIn("НачатьВыборОтделенияMAX", restart)
+        self.assertNotIn("АрхивироватьДиалог", restart)
+        self.assertNotIn("СостоянияДиалоговMAX.Закрыт", restart)
+
     def test_chat_title_keeps_max_sender_name_after_patient_is_selected(self):
         title = routine(self.form, "ПредставлениеСобеседникаMAX")
         self.assertLess(title.index("ИмяMAX"), title.index("ЗначениеЗаполнено(Пациент)"))
