@@ -9,7 +9,7 @@ NS = {"r": "http://v8.1c.ru/8.2/roles", "m": "http://v8.1c.ru/8.3/MDClasses"}
 
 
 class BaseRoleContracts(unittest.TestCase):
-    def test_minimal_read_and_get_only(self):
+    def test_minimal_permissions_only(self):
         role = ET.parse(ROOT / "Roles/бит_омни_БазоваяРоль/Ext/Rights.xml").getroot()
         actual = {}
         for obj in role.findall("r:object", NS):
@@ -26,6 +26,14 @@ class BaseRoleContracts(unittest.TestCase):
             "SessionParameter.бит_омни_КешОбъектовДляРассылки": {"Get"},
             "SessionParameter.бит_омни_ОтделениеПользователяMAX": {"Get"},
             "SessionParameter.бит_омни_ПолныеПраваMAX": {"Get"},
+            "Configuration.бит_МедицинаМАКС": {
+                "MainWindowModeNormal",
+                "MainWindowModeWorkplace",
+                "MainWindowModeEmbeddedWorkplace",
+                "MainWindowModeFullscreenWorkplace",
+                "MainWindowModeKiosk",
+                "AnalyticsSystemClient",
+            },
         })
         self.assertEqual(role.findtext("r:setForNewObjects", namespaces=NS), "false")
 

@@ -4,20 +4,6 @@
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
 	<object>
-		<name>Catalog.бит_омни_Рассылки</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>Catalog.бит_омни_СхемыКомпоновкиДанных</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
 		<name>Catalog.бит_омни_ШаблоныСообщений</name>
 		<right>
 			<name>Read</name>
@@ -25,7 +11,14 @@
 		</right>
 	</object>
 	<object>
-		<name>InformationRegister.бит_омни_АктивныеРассылки</name>
+		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.бит_омни_СхемыКомпоновкиДанных</name>
 		<right>
 			<name>Read</name>
 			<value>true</value>
@@ -39,6 +32,13 @@
 		</right>
 	</object>
 	<object>
+		<name>InformationRegister.бит_омни_АктивныеРассылки</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>SessionParameter.бит_омни_ОтделениеПользователяMAX</name>
 		<right>
 			<name>Get</name>
@@ -46,9 +46,36 @@
 		</right>
 	</object>
 	<object>
-		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
+		<name>Configuration.бит_МедицинаМАКС</name>
 		<right>
-			<name>Get</name>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.бит_омни_Рассылки</name>
+		<right>
+			<name>Read</name>
 			<value>true</value>
 		</right>
 	</object>

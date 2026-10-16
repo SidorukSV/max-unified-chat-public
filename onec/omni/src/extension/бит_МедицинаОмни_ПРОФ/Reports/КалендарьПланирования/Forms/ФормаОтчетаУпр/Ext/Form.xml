@@ -4,16 +4,16 @@
 	<CommandBarLocation>None</CommandBarLocation>
 	<VerticalScroll>useIfNecessary</VerticalScroll>
 	<ReportFormType>Main</ReportFormType>
-	<AutoShowState>DontShow</AutoShowState>
+	<AutoShowState>Auto</AutoShowState>
 	<ReportResultViewMode>Auto</ReportResultViewMode>
 	<ViewModeApplicationOnSetReportResult>Auto</ViewModeApplicationOnSetReportResult>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
 		<Autofill>false</Autofill>
 	</AutoCommandBar>
 	<Events>
-		<Event name="OnCreateAtServer" callType="After">бит_омни_ПриСозданииНаСервереПосле</Event>
 		<Event name="NotificationProcessing" callType="Before">бит_омни_ОбработкаОповещенияПеред</Event>
 		<Event name="NotificationProcessing" callType="After">бит_омни_ОбработкаОповещенияПосле</Event>
+		<Event name="OnCreateAtServer" callType="After">бит_омни_ПриСозданииНаСервереПосле</Event>
 	</Events>
 	<ChildItems>
 		<Pages name="Панель" id="17">
@@ -1938,7 +1938,7 @@
 		<CommandBarLocation>None</CommandBarLocation>
 		<VerticalScroll>useIfNecessary</VerticalScroll>
 		<ReportFormType>Main</ReportFormType>
-		<AutoShowState>DontShow</AutoShowState>
+		<AutoShowState>Auto</AutoShowState>
 		<ReportResultViewMode>Auto</ReportResultViewMode>
 		<ViewModeApplicationOnSetReportResult>Auto</ViewModeApplicationOnSetReportResult>
 		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">

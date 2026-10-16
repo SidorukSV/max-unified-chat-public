@@ -4,9 +4,56 @@
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
 	<object>
+		<name>Catalog.бит_омни_ШаблоныСообщений</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>DataProcessor.бит_омни_ЕдиныйЧат</name>
+		<right>
+			<name>Use</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.бит_омни_ОтделенияПользователейMAX</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.бит_омни_Контакты</name>
 		<right>
 			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
 			<value>true</value>
 			<restrictionByCondition>
 				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
@@ -18,44 +65,6 @@
 		</right>
 		<right>
 			<name>InputByString</name>
-			<value>true</value>
-		</right>
-		<right>
-			<name>Update</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
-			</restrictionByCondition>
-		</right>
-	</object>
-	<object>
-		<name>InformationRegister.бит_омни_ИсторияЧатовMAX</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
-			</restrictionByCondition>
-		</right>
-		<right>
-			<name>Update</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
-			</restrictionByCondition>
-		</right>
-	</object>
-	<object>
-		<name>InformationRegister.бит_омни_АрхивЧатовMAX</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
-			</restrictionByCondition>
-		</right>
-		<right>
-			<name>View</name>
 			<value>true</value>
 		</right>
 	</object>
@@ -77,6 +86,54 @@
 		</right>
 	</object>
 	<object>
+		<name>SessionParameter.бит_омни_ОтделениеПользователяMAX</name>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Configuration.бит_МедицинаМАКС</name>
+		<right>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.бит_омни_АрхивЧатовMAX</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.бит_омни_ОтделенияMAX</name>
 		<right>
 			<name>Read</name>
@@ -92,56 +149,26 @@
 		</right>
 	</object>
 	<object>
-		<name>InformationRegister.бит_омни_ОтделенияПользователейMAX</name>
+		<name>InformationRegister.бит_омни_ИсторияЧатовMAX</name>
 		<right>
 			<name>Read</name>
 			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>Catalog.бит_омни_ШаблоныСообщений</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
 		</right>
 		<right>
-			<name>View</name>
+			<name>Update</name>
 			<value>true</value>
-		</right>
-		<right>
-			<name>InputByString</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>DataProcessor.бит_омни_ЕдиныйЧат</name>
-		<right>
-			<name>Use</name>
-			<value>true</value>
-		</right>
-		<right>
-			<name>View</name>
-			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
 		</right>
 	</object>
 	<object>
 		<name>Subsystem.бит_омни</name>
 		<right>
 			<name>View</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>SessionParameter.бит_омни_ОтделениеПользователяMAX</name>
-		<right>
-			<name>Get</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
-		<right>
-			<name>Get</name>
 			<value>true</value>
 		</right>
 	</object>

@@ -247,6 +247,99 @@
 								</ColumnGroup>
 							</ChildItems>
 						</Table>
+						<UsualGroup name="бит_ГруппаАрхивныхДиалогов" id="439">
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Архивные диалоги</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="бит_ГруппаАрхивныхДиалоговРасширеннаяПодсказка" id="440"/>
+							<ChildItems>
+								<Table name="бит_ТаблицаАрхивныхДиалогов" id="441">
+									<ReadOnly>true</ReadOnly>
+									<DataPath>бит_АрхивныеДиалоги</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="бит_ТаблицаАрхивныхДиалоговКонтекстноеМеню" id="442"/>
+									<AutoCommandBar name="бит_ТаблицаАрхивныхДиалоговКоманднаяПанель" id="443"/>
+									<ExtendedTooltip name="бит_ТаблицаАрхивныхДиалоговРасширеннаяПодсказка" id="503"/>
+									<SearchStringAddition name="бит_ТаблицаАрхивныхДиалоговСтрокаПоиска" id="444">
+										<AdditionSource>
+											<Item>бит_ТаблицаАрхивныхДиалогов</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаАрхивныхДиалоговСтрокаПоискаКонтекстноеМеню" id="504"/>
+										<ExtendedTooltip name="бит_ТаблицаАрхивныхДиалоговСтрокаПоискаРасширеннаяПодсказка" id="505"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="бит_ТаблицаАрхивныхДиалоговСостояниеПросмотра" id="445">
+										<AdditionSource>
+											<Item>бит_ТаблицаАрхивныхДиалогов</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаАрхивныхДиалоговСостояниеПросмотраКонтекстноеМеню" id="506"/>
+										<ExtendedTooltip name="бит_ТаблицаАрхивныхДиалоговСостояниеПросмотраРасширеннаяПодсказка" id="507"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="бит_ТаблицаАрхивныхДиалоговУправлениеПоиском" id="446">
+										<AdditionSource>
+											<Item>бит_ТаблицаАрхивныхДиалогов</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаАрхивныхДиалоговУправлениеПоискомКонтекстноеМеню" id="508"/>
+										<ExtendedTooltip name="бит_ТаблицаАрхивныхДиалоговУправлениеПоискомРасширеннаяПодсказка" id="509"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<InputField name="бит_АрхивДата" id="447">
+											<DataPath>бит_АрхивныеДиалоги.ДатаАрхивации</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Дата</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="бит_АрхивДатаКонтекстноеМеню" id="448"/>
+											<ExtendedTooltip name="бит_АрхивДатаРасширеннаяПодсказка" id="449"/>
+										</InputField>
+										<InputField name="бит_АрхивПациент" id="450">
+											<DataPath>бит_АрхивныеДиалоги.Представление</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Пациент</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="бит_АрхивПациентКонтекстноеМеню" id="451"/>
+											<ExtendedTooltip name="бит_АрхивПациентРасширеннаяПодсказка" id="452"/>
+										</InputField>
+										<InputField name="бит_АрхивОтделение" id="453">
+											<DataPath>бит_АрхивныеДиалоги.Отделение</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Отделение</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="бит_АрхивОтделениеКонтекстноеМеню" id="454"/>
+											<ExtendedTooltip name="бит_АрхивОтделениеРасширеннаяПодсказка" id="455"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<Button name="бит_КнопкаВосстановитьДиалог" id="456">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.бит_ВосстановитьДиалог</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Вернуть из архива</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="бит_КнопкаВосстановитьДиалогРасширеннаяПодсказка" id="457"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
 						<UsualGroup name="ГруппаСостояние" id="54">
 							<Group>AlwaysHorizontal</Group>
 							<Representation>None</Representation>
@@ -361,6 +454,119 @@
 								<Event name="DocumentComplete">ЛентаЧатаДокументСформирован</Event>
 							</Events>
 						</HTMLDocumentField>
+						<UsualGroup name="бит_ГруппаСообщенийКлиники" id="458">
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Сообщения клиники</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="бит_ГруппаСообщенийКлиникиРасширеннаяПодсказка" id="459"/>
+							<ChildItems>
+								<Table name="бит_ТаблицаСообщенийКлиники" id="460">
+									<ReadOnly>true</ReadOnly>
+									<DataPath>бит_СообщенияКлиники</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="бит_ТаблицаСообщенийКлиникиКонтекстноеМеню" id="461"/>
+									<AutoCommandBar name="бит_ТаблицаСообщенийКлиникиКоманднаяПанель" id="462"/>
+									<ExtendedTooltip name="бит_ТаблицаСообщенийКлиникиРасширеннаяПодсказка" id="510"/>
+									<SearchStringAddition name="бит_ТаблицаСообщенийКлиникиСтрокаПоиска" id="463">
+										<AdditionSource>
+											<Item>бит_ТаблицаСообщенийКлиники</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаСообщенийКлиникиСтрокаПоискаКонтекстноеМеню" id="511"/>
+										<ExtendedTooltip name="бит_ТаблицаСообщенийКлиникиСтрокаПоискаРасширеннаяПодсказка" id="512"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="бит_ТаблицаСообщенийКлиникиСостояниеПросмотра" id="464">
+										<AdditionSource>
+											<Item>бит_ТаблицаСообщенийКлиники</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаСообщенийКлиникиСостояниеПросмотраКонтекстноеМеню" id="513"/>
+										<ExtendedTooltip name="бит_ТаблицаСообщенийКлиникиСостояниеПросмотраРасширеннаяПодсказка" id="514"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="бит_ТаблицаСообщенийКлиникиУправлениеПоиском" id="465">
+										<AdditionSource>
+											<Item>бит_ТаблицаСообщенийКлиники</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="бит_ТаблицаСообщенийКлиникиУправлениеПоискомКонтекстноеМеню" id="515"/>
+										<ExtendedTooltip name="бит_ТаблицаСообщенийКлиникиУправлениеПоискомРасширеннаяПодсказка" id="516"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="OnActivateRow">бит_ТаблицаСообщенийКлиникиПриАктивизацииСтроки</Event>
+									</Events>
+									<ChildItems>
+										<InputField name="бит_СообщениеДата" id="466">
+											<DataPath>бит_СообщенияКлиники.Период</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Дата</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="бит_СообщениеДатаКонтекстноеМеню" id="467"/>
+											<ExtendedTooltip name="бит_СообщениеДатаРасширеннаяПодсказка" id="468"/>
+										</InputField>
+										<InputField name="бит_СообщениеТекст" id="469">
+											<DataPath>бит_СообщенияКлиники.Представление</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Текст</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="бит_СообщениеТекстКонтекстноеМеню" id="470"/>
+											<ExtendedTooltip name="бит_СообщениеТекстРасширеннаяПодсказка" id="471"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<InputField name="бит_ПолеРедактирования" id="472">
+									<DataPath>бит_ТекстРедактирования</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Новый текст</v8:content>
+										</v8:item>
+									</Title>
+									<MultiLine>true</MultiLine>
+									<ContextMenu name="бит_ПолеРедактированияКонтекстноеМеню" id="473"/>
+									<ExtendedTooltip name="бит_ПолеРедактированияРасширеннаяПодсказка" id="474"/>
+								</InputField>
+								<UsualGroup name="бит_ГруппаКнопокСообщений" id="475">
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="бит_ГруппаКнопокСообщенийРасширеннаяПодсказка" id="476"/>
+									<ChildItems>
+										<Button name="бит_КнопкаСохранитьПравку" id="477">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.бит_СохранитьПравку</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Сохранить правку</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="бит_КнопкаСохранитьПравкуРасширеннаяПодсказка" id="478"/>
+										</Button>
+										<Button name="бит_КнопкаУдалитьСообщение" id="479">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.бит_УдалитьСообщение</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Удалить у всех</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="бит_КнопкаУдалитьСообщениеРасширеннаяПодсказка" id="480"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
 						<UsualGroup name="ГруппаОтправка" id="75">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
@@ -458,6 +664,7 @@
 													<ExtendedTooltip name="ОтправитьКнопкаРасширеннаяПодсказка" id="86"/>
 												</Button>
 												<Button name="бит_ОтправитьФайлКнопка" id="437">
+													<Type>UsualButton</Type>
 													<CommandName>Form.Command.бит_ОтправитьФайл</CommandName>
 													<Title>
 														<v8:item>
@@ -466,6 +673,17 @@
 														</v8:item>
 													</Title>
 													<ExtendedTooltip name="бит_ОтправитьФайлКнопкаРасширеннаяПодсказка" id="438"/>
+												</Button>
+												<Button name="бит_ПоказатьСообщенияКлиникиКнопка" id="481">
+													<Type>UsualButton</Type>
+													<CommandName>Form.Command.бит_ПоказатьСообщенияКлиники</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Изменить / удалить</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="бит_ПоказатьСообщенияКлиникиКнопкаРасширеннаяПодсказка" id="482"/>
 												</Button>
 											</ChildItems>
 										</UsualGroup>
@@ -1176,7 +1394,11 @@
 				</Column>
 				<Column name="Ответственный" id="191">
 					<Type>
-						<v8:TypeId>c7e82c12-7586-469b-a703-fd2a4161dac9</v8:TypeId>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
 					</Type>
 				</Column>
 				<Column name="МойДиалог" id="192">
@@ -1318,7 +1540,11 @@
 				</v8:item>
 			</Title>
 			<Type>
-				<v8:TypeId>c7e82c12-7586-469b-a703-fd2a4161dac9</v8:TypeId>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
 		<Attribute name="ГраницаОповещений" id="125">
@@ -1346,6 +1572,110 @@
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
 					<v8:Length>150</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="бит_АрхивныеДиалоги" id="501">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ИдентификаторАрхива" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>36</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ДатаАрхивации" id="2">
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="Пациент" id="3">
+					<Type>
+						<v8:Type>cfg:CatalogRef.Клиенты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Бот" id="4">
+					<Type>
+						<v8:Type>cfg:CatalogRef.бит_омни_Боты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Отделение" id="5">
+					<Type>
+						<v8:Type>cfg:CatalogRef.бит_омни_ОтделенияMAX</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Представление" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>250</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="бит_СообщенияКлиники" id="502">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Период" id="1">
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="Контакт" id="2">
+					<Type>
+						<v8:Type>cfg:CatalogRef.бит_омни_Контакты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ИдентификаторСообщения" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Текст" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Представление" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="бит_ТекстРедактирования" id="503">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
 					<v8:AllowedLength>Variable</v8:AllowedLength>
 				</v8:StringQualifiers>
 			</Type>
@@ -1453,6 +1783,18 @@
 				</v8:item>
 			</Title>
 			<Action>ОткрытьАрхивЧатовОбработка</Action>
+		</Command>
+		<Command name="бит_ВосстановитьДиалог" id="504">
+			<Action>бит_ВосстановитьДиалогОбработка</Action>
+		</Command>
+		<Command name="бит_СохранитьПравку" id="505">
+			<Action>бит_СохранитьПравкуОбработка</Action>
+		</Command>
+		<Command name="бит_УдалитьСообщение" id="506">
+			<Action>бит_УдалитьСообщениеОбработка</Action>
+		</Command>
+		<Command name="бит_ПоказатьСообщенияКлиники" id="507">
+			<Action>бит_ПоказатьСообщенияКлиникиОбработка</Action>
 		</Command>
 	</Commands>
 </Form>

@@ -196,9 +196,9 @@
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:Type>cfg:CatalogRef.Оборудование</v8:Type>
 						<v8:Type>cfg:CatalogRef.ШаблоныАнкет</v8:Type>
+						<v8:Type>cfg:ChartOfCharacteristicTypesRef.СвойстваОбъектов</v8:Type>
 						<v8:Type>cfg:CatalogRef.Филиалы</v8:Type>
 						<v8:Type>cfg:CatalogRef.ВидыСостоянийЗаявок</v8:Type>
-						<v8:Type>cfg:ChartOfCharacteristicTypesRef.СвойстваОбъектов</v8:Type>
 						<v8:NumberQualifiers>
 							<v8:Digits>10</v8:Digits>
 							<v8:FractionDigits>0</v8:FractionDigits>

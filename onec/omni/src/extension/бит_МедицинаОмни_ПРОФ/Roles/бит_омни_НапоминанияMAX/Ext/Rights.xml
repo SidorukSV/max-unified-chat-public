@@ -4,6 +4,27 @@
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
 	<object>
+		<name>InformationRegister.бит_омни_ОчередьСообщенийMAX</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.бит_омни_ДоставкаНапоминанийMAX</name>
 		<right>
 			<name>Read</name>
@@ -18,21 +39,37 @@
 		</right>
 	</object>
 	<object>
-		<name>InformationRegister.бит_омни_ОчередьСообщенийMAX</name>
-		<right>
-			<name>Read</name><value>true</value>
-			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
-			</restrictionByCondition>
-		</right>
-		<right><name>View</name><value>true</value></right>
-	</object>
-	<object>
 		<name>SessionParameter.бит_омни_ОтделениеПользователяMAX</name>
-		<right><name>Get</name><value>true</value></right>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
 	</object>
 	<object>
-		<name>SessionParameter.бит_омни_ПолныеПраваMAX</name>
-		<right><name>Get</name><value>true</value></right>
+		<name>Configuration.бит_МедицинаМАКС</name>
+		<right>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
 	</object>
 </Rights>

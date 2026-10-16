@@ -28,6 +28,11 @@
 			<Name>ВидыСостоянийЗаявок</Name>
 			<Comment/>
 			<ExtendedConfigurationObject>d71a3a1e-6cab-40fe-80fa-d1d48e1222c6</ExtendedConfigurationObject>
+			<Hierarchical>false</Hierarchical>
+			<CodeLength>0</CodeLength>
+			<DescriptionLength>50</DescriptionLength>
+			<CodeType>Number</CodeType>
+			<CodeAllowedLength>Fixed</CodeAllowedLength>
 		</Properties>
 		<ChildObjects>
 			<Attribute uuid="9da5ff86-b60b-419f-af4e-a4b81db50f88">
@@ -72,6 +77,18 @@
 					<Indexing>DontIndex</Indexing>
 					<FullTextSearch>Use</FullTextSearch>
 					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
+			<Attribute uuid="8dcb9c6f-fc3b-4f71-bf52-96f49b3963d9">
+				<InternalInfo/>
+				<Properties>
+					<ObjectBelonging>Adopted</ObjectBelonging>
+					<Name>ТипСостояния</Name>
+					<Comment/>
+					<ExtendedConfigurationObject>a13471a1-209b-424f-b8e4-8f38d79bc865</ExtendedConfigurationObject>
+					<Type>
+						<v8:Type>cfg:EnumRef.ТипыСостоянийЗаявок</v8:Type>
+					</Type>
 				</Properties>
 			</Attribute>
 			<Form>ФормаЭлементаУпр</Form>

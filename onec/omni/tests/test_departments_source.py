@@ -47,7 +47,7 @@ class DepartmentSourceTests(unittest.TestCase):
         self.assertNotRegex(self.access, r"\bПараметрыДоступа\s*\(")
         self.assertNotRegex(self.chat, r"\bПараметрыДоступа\s*\(")
         self.assertEqual(self.access.count("ПолучитьПараметрыДоступаMAX()"), 3)
-        self.assertEqual(self.chat.count("бит_омни_ОтделенияMAXСервер.ПолучитьПараметрыДоступаMAX()"), 3)
+        self.assertEqual(self.chat.count("бит_омни_ОтделенияMAXСервер.ПолучитьПараметрыДоступаMAX()"), 4)
 
     def test_empty_department_fails_closed(self):
         check = routine(self.access, "ПроверитьДоступККонтакту")
@@ -85,7 +85,7 @@ class DepartmentSourceTests(unittest.TestCase):
 
     def test_both_new_and_existing_patients_prompted(self):
         auth = routine(self.transport, "ОбработатьПолученныйКонтактMAX")
-        self.assertEqual(auth.count("ЗапроситьОтделениеMAX("), 2)
+        self.assertEqual(auth.count("ЗапроситьОтделениеMAX("), 3)
         self.assertLess(auth.index("HMACSHA256MAX"), auth.index("ЗапроситьОтделениеMAX"))
         self.assertIn("Ряды.Количество() = 30", routine(self.transport, "ЗапроситьОтделениеMAX"))
 
