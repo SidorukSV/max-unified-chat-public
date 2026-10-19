@@ -7,6 +7,7 @@ archive; ordinary operator with own, other and empty department assignments.
 """
 from pathlib import Path
 import re
+import sys
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -35,6 +36,18 @@ class RoutingTargetReopenSourceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.integration = source("CommonModules/бит_омни_ИнтеграцияСMAX/Ext/Module.bsl")
         cls.departments = source("CommonModules/бит_омни_ОтделенияMAXСервер/Ext/Module.bsl")
+        cls.fixture = Path(__file__).with_name("routing-target-reopen-runtime.bsl").read_text(encoding="utf-8-sig")
+
+    def test_runtime_fixture_uses_exact_private_routing_body_and_rollback(self):
+        production = routine(self.integration, "ИзменитьМаршрутизациюКонтактаВТранзакцииMAX")
+        extracted = routine(self.fixture, "ТестИзменитьМаршрутизациюКонтактаВТранзакцииMAX")
+        extracted = extracted.replace("ТестИзменитьМаршрутизацию", "ИзменитьМаршрутизацию")
+        extracted = extracted.replace("бит_омни_ИнтеграцияСMAX.ПеревестиЗакрытыйДиалогВНовыйMAX", "ПеревестиЗакрытыйДиалогВНовыйMAX")
+        self.assertEqual(re.sub(r"\s+", "", extracted), re.sub(r"\s+", "", production))
+        self.assertIn("ОтменитьТранзакцию()", self.fixture)
+        self.assertNotIn("ЗафиксироватьТранзакцию()", self.fixture)
+        self.assertNotIn("HTTPСоединение", self.fixture)
+        self.assertNotIn("ОтправитьСообщение(", self.fixture)
 
     def test_patient_route_opens_target_after_write_in_same_transaction(self):
         route = routine(self.integration, "ИзменитьМаршрутизациюКонтактаВТранзакцииMAX")
@@ -75,6 +88,7 @@ class RoutingTargetReopenSourceTests(unittest.TestCase):
 
     def test_stale_retry_checks_route_state_and_both_history_stores(self):
         guard = routine(self.integration, "ПовторноеОбращениеАктуальноMAX")
+        self.assertNotIn('ЗначениеСвойства(КонтекстПриема, "ПовторноеОбращение"', guard)
         self.assertIn("Отпечатки.ОтпечатокМаршрута <>", guard)
         self.assertIn("Отпечатки.ОтпечатокСостояния <>", guard)
         for store in ["История", "Архив"]:
@@ -83,6 +97,18 @@ class RoutingTargetReopenSourceTests(unittest.TestCase):
             self.assertIn(f"{store}.ИдентификаторСообщения <> &Идентификатор", guard)
         self.assertNotIn("ПеревестиЗакрытыйДиалогВНовыйMAX(", guard)
         self.assertNotIn("ИзменитьМаршрутизацию", guard)
+
+    def test_same_second_previous_input_is_part_of_persisted_baseline(self):
+        stage = routine(self.integration, "ФиксироватьОткрытиеДиалогаПриПриемеMAX")
+        self.assertIn('Вставить("ОтпечатокВходящих", ОтпечатокВходящихДиалогаMAX(Контакт, Бот))', stage)
+        guard = routine(self.integration, "ПовторноеОбращениеАктуальноMAX")
+        self.assertLess(guard.index("ОтпечатокВходящих = ОтпечатокВходящихДиалогаMAX"), guard.index("Новый Запрос("))
+        snapshot = routine(self.integration, "ОтпечатокВходящихДиалогаMAX")
+        for store in ["бит_омни_ИсторияЧатовMAX", "бит_омни_АрхивЧатовMAX"]:
+            self.assertIn(store, snapshot)
+        self.assertIn("КОЛИЧЕСТВО(*)", snapshot)
+        self.assertIn("ОБЪЕДИНИТЬ", snapshot)
+        self.assertNotIn("ОБЪЕДИНИТЬ ВСЕ", snapshot)
 
     def test_department_event_id_is_stable_per_callback_and_not_per_contact(self):
         callback = routine(self.integration, "ОбработатьВыборОтделенияMAX")
@@ -141,4 +167,17 @@ class RoutingTargetReopenSourceTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    if len(sys.argv) == 3 and sys.argv[1] == "--emit-runtime-module":
+        integration = source("CommonModules/бит_омни_ИнтеграцияСMAX/Ext/Module.bsl")
+        body = routine(integration, "ИзменитьМаршрутизациюКонтактаВТранзакцииMAX")
+        body = body.replace("Функция ИзменитьМаршрутизацию", "Функция ТестИзменитьМаршрутизацию", 1)
+        body = body.replace("ПеревестиЗакрытыйДиалогВНовыйMAX(", "бит_омни_ИнтеграцияСMAX.ПеревестиЗакрытыйДиалогВНовыйMAX(")
+        fixture = Path(__file__).with_name("routing-target-reopen-runtime.bsl").read_text(encoding="utf-8-sig")
+        fixture = re.sub(
+            r"(?<=// BEGIN EXTRACTED ROUTING HELPER: keep in sync with production \(source test\)\.)[\s\S]*?(?=// END EXTRACTED ROUTING HELPER)",
+            lambda _: "\n" + body + "\n", fixture,
+        )
+        Path(sys.argv[2]).write_text(fixture, encoding="utf-8")
+        print(sys.argv[2])
+    else:
+        unittest.main()
