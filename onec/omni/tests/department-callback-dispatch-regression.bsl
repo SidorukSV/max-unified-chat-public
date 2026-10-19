@@ -49,7 +49,11 @@
 	Сообщений = 0;
 	Для Каждого Строка Из Исходящие Цикл
 		Если Строка.Вид = "message" Тогда Сообщений = Сообщений + 1; КонецЕсли;
-		Если СтрНайти(Строка.ТелоJSON, "Ваше обращение направлено в отделение") > 0 Тогда ЕстьПодтверждение = Истина; КонецЕсли;
+		Если СтрНайти(Строка.ТелоJSON, "Ваше обращение направлено в отделение") > 0 Тогда
+			Если Строка.Вид <> "callback" Тогда ВызватьИсключение "TEST duplicate department confirmation message"; КонецЕсли;
+			Если ЕстьПодтверждение Тогда ВызватьИсключение "TEST more than one department confirmation"; КонецЕсли;
+			ЕстьПодтверждение = Истина;
+		КонецЕсли;
 		Если Строка.Вид = "callback" Тогда ЕстьОтветКнопки = Истина; КонецЕсли;
 	КонецЦикла;
 	Если Не ЕстьПодтверждение Или Не ЕстьОтветКнопки Тогда ВызватьИсключение "TEST callback/confirmation not queued"; КонецЕсли;
@@ -64,7 +68,7 @@
 		ВызватьИсключение "TEST unchanged department duplicated text/menu";
 	КонецЕсли;
 	ОтменитьТранзакцию();
-	Результат = "PASS department actual dispatcher: signed own phone, assignment, confirmation and callback queued, unchanged department no repeated text/menu; rollback, no HTTP";
+	Результат = "PASS department actual dispatcher: signed own phone, assignment, exactly one callback confirmation, no duplicate text, unchanged department no repeated text/menu; rollback, no HTTP";
 Исключение
 	ОтменитьТранзакцию();
 	ВызватьИсключение;

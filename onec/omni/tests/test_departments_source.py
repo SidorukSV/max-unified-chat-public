@@ -75,11 +75,13 @@ class DepartmentSourceTests(unittest.TestCase):
         self.assertLess(callback.index("ПодтвержденныйТелефонКонтактаMAX"), callback.index("ЗакрепитьОтделение"))
         self.assertNotIn("ПолучитьКонтактПоUser", callback)
 
-    def test_first_department_assignment_has_visible_confirmation(self):
+    def test_department_confirmation_updates_callback_without_second_message(self):
         callback = routine(self.transport, "ОбработатьВыборОтделенияMAX")
         self.assertIn("ОтделениеИзменено = Результат.Изменено", callback)
         self.assertIn("Если ОтделениеИзменено Тогда", callback)
-        self.assertIn("ОтправитьТекстовоеСообщение(ТекстОтвета", callback)
+        self.assertIn("бит_ОтветитьНаCallbackMAX(Callback", callback)
+        self.assertIn('Новый Структура("text,attachments,notify", ТекстОтвета', callback)
+        self.assertNotIn("ОтправитьТекстовоеСообщение(ТекстОтвета", callback)
 
     def test_strict_payload_does_not_execute_input(self):
         parse = routine(self.access, "ОтделениеИзКоманды")

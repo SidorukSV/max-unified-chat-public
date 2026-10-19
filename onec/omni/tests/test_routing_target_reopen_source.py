@@ -142,7 +142,7 @@ class RoutingTargetReopenSourceTests(unittest.TestCase):
         self.assertEqual(callback.count("ПодтвержденныйТелефонКонтактаMAX"), 1)
         self.assertEqual(callback.count("УстановитьПривилегированныйРежим(БылПривилегированныйРежим)"), 2)
         confirmation = callback[callback.index("Если ОтделениеИзменено Тогда"):]
-        self.assertIn("ОтправитьТекстовоеСообщение(ТекстОтвета", confirmation)
+        self.assertNotIn("ОтправитьТекстовоеСообщение(ТекстОтвета", confirmation)
         self.assertIn("Если Клиенты.Количество() > 0 Тогда ЗапроситьПациентаMAX", confirmation)
         self.assertNotIn("ИзменитьМаршрутизациюКонтактаMAX", callback)
         self.assertNotIn("Возврат;", callback)
