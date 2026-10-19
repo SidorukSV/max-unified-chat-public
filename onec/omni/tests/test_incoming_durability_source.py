@@ -2,6 +2,7 @@
 from pathlib import Path
 import re
 import unittest
+import xml.etree.ElementTree as ET
 from prepare_incoming_durability_regression import compose
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -126,6 +127,37 @@ class IncomingDurabilitySourceTests(unittest.TestCase):
             self.assertEqual(routine(generated, name), routine(self.inbox, name))
         self.assertIn("ПопыткаВходящегоАктуальна(Запись, 1, СтарыйUUID)", generated)
         self.assertIn("ПопыткаВходящегоАктуальна(Запись, 1, НовыйUUID)", generated)
+
+    def test_fixture_cleanup_filters_match_actual_register_dimensions(self):
+        generated = compose()
+        cleanup = routine(generated, "УдалитьФикстурыРегрессииПриемаMAX")
+        names = re.search(r'СтрРазделить\("([^"]+)"', cleanup).group(1).split(",")
+        ns = {"m": "http://v8.1c.ru/8.3/MDClasses"}
+        registers = MODULES.parent / "InformationRegisters"
+
+        def dimensions(name):
+            metadata = ET.parse(registers / f"бит_омни_{name}MAX.xml")
+            return {item.findtext("m:Properties/m:Name", namespaces=ns)
+                    for item in metadata.findall(".//m:Dimension", ns)}
+
+        for name in names:
+            with self.subTest(register=name):
+                self.assertIn("Бот", dimensions(name))
+        self.assertEqual(dimensions("ИсходящиеНамерения"), {"Ключ"})
+        outgoing = routine(generated, "УдалитьИсходящиеФикстурыРегрессииПриемаMAX")
+        self.assertIn("ГДЕ Бот = &Бот", outgoing)
+        self.assertIn("Запись.Ключ = СтрокаКлюча.Ключ", outgoing)
+        self.assertIn("Запись.Выбран() И Запись.Бот = Бот", outgoing)
+        self.assertNotIn("СоздатьНаборЗаписей", outgoing)
+
+    def test_fixture_cleanup_failure_preserves_original_exception(self):
+        generated = compose()
+        execute = routine(generated, "ВыполнитьРегрессиюНадежногоПриемаMAX")
+        capture = execute.index("ИсходнаяОшибка = ПодробноеПредставлениеОшибки(ИнформацияОбОшибке())")
+        cleanup = execute.index("УдалитьФикстурыРегрессииПриемаMAX(", capture)
+        self.assertLess(capture, cleanup)
+        self.assertIn('ИсходнаяОшибка = ИсходнаяОшибка + Символы.ПС + "Дополнительная ошибка очистки фикстур:', execute)
+        self.assertIn("ВызватьИсключение ИсходнаяОшибка", execute)
 
 
 if __name__ == "__main__":
