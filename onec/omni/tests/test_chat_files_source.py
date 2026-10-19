@@ -15,7 +15,11 @@ class ChatFilesSource(unittest.TestCase):
     def test_rejection_before_history_and_handler(self):
         source = (EXT / 'CommonModules/бит_омни_ИнтеграцияСMAX/Ext/Module.bsl').read_text(encoding='utf-8-sig')
         function = source.split('Процедура ОбработатьСозданиеСообщения(', 1)[1].split('КонецПроцедуры', 1)[0]
-        self.assertLess(function.index('ОтклонитьВходящиеВложенияMAX'), function.index('ЗаписатьВходящееСообщениеMAX'))
+        self.assertLess(function.index('ОтклонитьВходящиеВложенияMAX'), function.index('ОбработатьСообщение('))
+        intake = source.split('Функция СохранитьПриемОбновленияMAX(', 1)[1].split('КонецФункции', 1)[0]
+        self.assertLess(intake.index('РазрешенныеВложения'), intake.index('ЗаписатьВходящееСообщениеMAX'))
+        self.assertIn('"type") = "contact"', intake)
+        self.assertNotIn('ОтклонитьВходящиеВложенияMAX(', intake)
         reject = source.split('Процедура ОтклонитьВходящиеВложенияMAX(', 1)[1].split('КонецПроцедуры', 1)[0]
         self.assertLess(reject.index('ЗафиксироватьТранзакцию'), reject.index('ОтправитьТекстовоеСообщение'))
         self.assertIn('MAX_ATTACHMENTS_REJECTED', reject)

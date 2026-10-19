@@ -27,10 +27,14 @@ class ChatReopenArchiveSourceTests(unittest.TestCase):
         cls.archive = source("CommonModules/бит_омни_АрхивЧатовMAX/Ext/Module.bsl")
         cls.form = source("DataProcessors/бит_омни_ЕдиныйЧат/Forms/Форма/Ext/Form/Module.bsl")
 
-    def test_closed_chat_is_reset_before_new_message_is_recorded(self):
+    def test_closed_chat_is_opened_durably_and_scenario_uses_persisted_repeat_flag(self):
         created = routine(self.integration, "ОбработатьСозданиеСообщения")
-        self.assertLess(created.index("ДиалогЗакрытMAX"), created.index("ЗаписатьВходящееСообщениеMAX"))
-        self.assertLess(created.index("ПодготовитьПовторноеОбращениеMAX"), created.index("ЗаписатьВходящееСообщениеMAX"))
+        self.assertIn('КонтекстПриема, "ПовторноеОбращение"', created)
+        self.assertNotIn("ДиалогЗакрытMAX(", created)
+        self.assertNotIn("ЗаписатьВходящееСообщениеMAX(", created)
+        intake = routine(self.integration, "СохранитьПриемОбновленияMAX")
+        self.assertLess(intake.index("СообщениеЧатаУжеЗаписаноMAX"), intake.index("ФиксироватьОткрытиеДиалогаПриПриемеMAX"))
+        self.assertIn("ПодготовитьПовторноеОбращениеMAX", created)
         reset = routine(self.integration, "ПодготовитьПовторноеОбращениеВТранзакцииMAX")
         self.assertIn("СброситьПациента", reset)
         self.assertLess(
