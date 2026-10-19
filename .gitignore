@@ -20,6 +20,7 @@ __pycache__/
 *.pyc
 .artifacts/
 .local-artifacts/
+.agent-hub/runtime/
 
 # Editor/system files
 .idea/

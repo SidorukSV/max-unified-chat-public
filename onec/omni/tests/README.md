@@ -1,5 +1,25 @@
 # Проверки расширения MAX
 
+## Надежный прием, callback и маршрутизация (1.1.0.54)
+
+Только отдельная база, отключенные регламентные задания, без действующих ботов.
+`test_callback_identity_source.py --emit-runtime-module <Module.bsl>` и
+`test_routing_target_reopen_source.py --emit-runtime-module <Module.bsl>`
+собирают модули доверенных тестовых EPF с актуальными private production helpers.
+Первый экспорт: `ВыполнитьРегрессиюCallbackMAX(ПациентДо, ПациентПосле)`,
+второй: `ВыполнитьПроверкиМаршрутизацииMAX(ПациентДо, ПациентПосле)`.
+Фикстуры откатываются, HTTP не выполняется.
+
+`prepare_incoming_durability_regression.py --output <Module.bsl>` собирает EPF
+для `ВыполнитьРегрессиюНадежногоПриемаMAX()`. Запускать в серверном контексте
+вне транзакции: реальный inbox сам фиксирует этапы, тест адресно удаляет свои
+записи после успеха или ошибки. `department-callback-dispatch-regression.bsl`
+выполняется через серверный `execute_code` и всегда откатывает свои записи.
+
+Проверки исходников не заменяют runtime. Ordinary-role экспорт routing fixture
+нельзя запускать под администратором и выдавать за доказательство RLS.
+Результаты и ограничения: [приемка 1.1.0.54](../../../install-guide/ACCEPTANCE-1.1.0.54.md).
+
 ## Очистка стандартного набора (1.1.0.30)
 
 `standard-mailings-cleanup-regression.ps1` — статическая регрессия исходников:
