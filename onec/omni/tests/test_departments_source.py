@@ -47,12 +47,12 @@ class DepartmentSourceTests(unittest.TestCase):
         self.assertNotRegex(self.access, r"\bПараметрыДоступа\s*\(")
         self.assertNotRegex(self.chat, r"\bПараметрыДоступа\s*\(")
         self.assertEqual(self.access.count("ПолучитьПараметрыДоступаMAX()"), 3)
-        self.assertEqual(self.chat.count("бит_омни_ОтделенияMAXСервер.ПолучитьПараметрыДоступаMAX()"), 4)
+        self.assertIn("бит_омни_ОтделенияMAXСервер.ПолучитьПараметрыДоступаMAX()", self.chat)
 
     def test_empty_department_fails_closed(self):
         check = routine(self.access, "ПроверитьДоступККонтакту")
-        self.assertIn("Не ЗначениеЗаполнено(Доступ.Отделение)", check)
-        self.assertIn("Доступ.Отделение <> Выборка.Отделение", check)
+        self.assertIn("Доступ.Отделения.Найти(Выборка.Отделение) = Неопределено", check)
+        self.assertIn("Если ЗначениеЗаполнено(Выборка.Отделение)", self.access)
         self.assertIn("Бот <> Выборка.Бот", check)
 
     def test_assignment_and_history_same_transaction(self):

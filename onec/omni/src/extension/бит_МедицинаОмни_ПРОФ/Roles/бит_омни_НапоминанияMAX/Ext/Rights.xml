@@ -9,7 +9,7 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
@@ -30,7 +30,7 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>

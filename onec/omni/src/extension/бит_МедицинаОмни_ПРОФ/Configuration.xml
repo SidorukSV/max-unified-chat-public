@@ -60,7 +60,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.бит_омни_НапоминанияMAX</xr:Item>
 			</DefaultRoles>
 			<Vendor>Первый Бит, офис Челябинск</Vendor>
-			<Version>1.1.0.56</Version>
+			<Version>1.1.0.57</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
 			<DetailedInformation/>
@@ -100,7 +100,9 @@
 			<Role>бит_омни_НапоминанияMAX</Role>
 			<Role>бит_омни_ОператорОтделенияMAX</Role>
 			<Role>бит_омни_БазоваяРоль</Role>
+			<Role>бит_омни_РедактированиеГрафиковMAX</Role>
 			<CommonTemplate>ОписаниеОбновлений</CommonTemplate>
+			<CommonModule>бит_омни_ГрафикиКлиникиСервер</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияПовтИсп</CommonModule>
 			<CommonModule>бит_омни_ИнтеграцияСMAX</CommonModule>
 			<CommonModule>бит_омни_НадежныйОбменMAX</CommonModule>
@@ -122,6 +124,7 @@
 			<CommonModule>бит_омни_СхемыКомпоновки</CommonModule>
 			<CommonModule>бит_омни_ОтделенияMAXСервер</CommonModule>
 			<CommonModule>бит_омни_АрхивЧатовMAX</CommonModule>
+			<CommonModule>бит_омни_МаршрутыMAX</CommonModule>
 			<HTTPService>бит_омни_Интеграция</HTTPService>
 			<EventSubscription>бит_омни_СправочникиПередЗаписью</EventSubscription>
 			<EventSubscription>бит_омни_ПриЗаписиОбъекта</EventSubscription>
@@ -147,6 +150,7 @@
 			<Catalog>бит_омни_Рассылки</Catalog>
 			<Catalog>бит_омни_ШаблоныСообщений</Catalog>
 			<Catalog>бит_омни_ОтделенияMAX</Catalog>
+			<Document>бит_омни_УстановкаГрафиковРаботыКлиники</Document>
 			<Document>Анкета</Document>
 			<Document>Заявка</Document>
 			<Document>Прием</Document>
@@ -162,6 +166,8 @@
 			<Enum>ТипыСостоянийЗаявок</Enum>
 			<Report>КалендарьПланирования</Report>
 			<DataProcessor>бит_омни_ЕдиныйЧат</DataProcessor>
+			<InformationRegister>бит_омни_ДополнительныеОтделенияMAX</InformationRegister>
+			<InformationRegister>бит_омни_ГрафикиРаботыКлиники</InformationRegister>
 			<InformationRegister>бит_омни_ЗначенияНастроек</InformationRegister>
 			<InformationRegister>бит_омни_АктивныеРассылки</InformationRegister>
 			<InformationRegister>бит_омни_Команды</InformationRegister>

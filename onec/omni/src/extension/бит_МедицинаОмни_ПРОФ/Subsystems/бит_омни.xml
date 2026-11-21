@@ -35,6 +35,8 @@
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.бит_омни_ЕдиныйЧат</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.бит_омни_ОтделенияMAX</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.бит_омни_ОтделенияПользователейMAX</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.бит_омни_УстановкаГрафиковРаботыКлиники</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.бит_омни_ДополнительныеОтделенияMAX</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects/>

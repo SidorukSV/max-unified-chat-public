@@ -44,19 +44,26 @@
 		</right>
 	</object>
 	<object>
+		<name>InformationRegister.бит_омни_ДополнительныеОтделенияMAX</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.бит_омни_Контакты</name>
 		<right>
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
 			<name>Update</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
@@ -74,14 +81,14 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение В (&amp;бит_омни_ОтделениеПользователяMAX) И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
 			<name>Update</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение В (&amp;бит_омни_ОтделениеПользователяMAX) И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 	</object>
@@ -125,7 +132,7 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение = &amp;бит_омни_ОтделениеПользователяMAX И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Отделение В (&amp;бит_омни_ОтделениеПользователяMAX) И Отделение &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
@@ -154,14 +161,14 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 		<right>
 			<name>Update</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX = &amp;бит_омни_ОтделениеПользователяMAX И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
+				<condition>ГДЕ &amp;бит_омни_ПолныеПраваMAX ИЛИ (Контакт.ОтделениеMAX В (&amp;бит_омни_ОтделениеПользователяMAX) И Контакт.ОтделениеMAX &lt;&gt; ЗНАЧЕНИЕ(Справочник.бит_омни_ОтделенияMAX.ПустаяСсылка))</condition>
 			</restrictionByCondition>
 		</right>
 	</object>

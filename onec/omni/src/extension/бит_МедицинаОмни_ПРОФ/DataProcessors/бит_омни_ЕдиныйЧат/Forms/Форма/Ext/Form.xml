@@ -459,7 +459,7 @@
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Сообщения клиники</v8:content>
+									<v8:content>Мои текстовые сообщения</v8:content>
 								</v8:item>
 							</Title>
 							<ExtendedTooltip name="бит_ГруппаСообщенийКлиникиРасширеннаяПодсказка" id="459"/>
@@ -957,6 +957,16 @@
 												</v8:item>
 											</Title>
 											<ExtendedTooltip name="КнопкаПеренестиРасширеннаяПодсказка" id="357"/>
+										</Button>
+										<Button name="КнопкаОтменитьЗапись" id="517">
+											<CommandName>Form.Command.ОтменитьЗапись</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Отменить</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="КнопкаОтменитьЗаписьРасширеннаяПодсказка" id="518"/>
 										</Button>
 										<Button name="КнопкаНапомнить" id="358">
 											<Type>UsualButton</Type>
@@ -1680,6 +1690,15 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
+		<Attribute name="КлючиОповещенийГраницы" id="504">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="ПереключитьАвтообновление" id="212">
@@ -1795,6 +1814,15 @@
 		</Command>
 		<Command name="бит_ПоказатьСообщенияКлиники" id="507">
 			<Action>бит_ПоказатьСообщенияКлиникиОбработка</Action>
+		</Command>
+		<Command name="ОтменитьЗапись" id="508">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отменить запись</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОтменитьЗаписьОбработка</Action>
 		</Command>
 	</Commands>
 </Form>

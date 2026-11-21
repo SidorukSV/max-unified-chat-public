@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="Клиника" id="1">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ВыбратьКлинику</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Клиника</v8:content>
+					</v8:item>
+				</Title>
+				<Representation>Text</Representation>
+				<ExtendedTooltip name="КлиникаРасширеннаяПодсказка" id="2"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="НомерДата" id="3">
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="НомерДатаРасширеннаяПодсказка" id="4"/>
+			<ChildItems>
+				<InputField name="Номер" id="5">
+					<DataPath>Объект.Номер</DataPath>
+					<ContextMenu name="НомерКонтекстноеМеню" id="6"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="7"/>
+				</InputField>
+				<InputField name="Дата" id="8">
+					<DataPath>Объект.Дата</DataPath>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="10"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Филиал" id="11">
+			<DataPath>Объект.Филиал</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Клиника</v8:content>
+				</v8:item>
+			</Title>
+			<ReadOnly>true</ReadOnly>
+			<ContextMenu name="ФилиалКонтекстноеМеню" id="12"/>
+			<ExtendedTooltip name="ФилиалРасширеннаяПодсказка" id="13"/>
+		</InputField>
+		<UsualGroup name="ПериодДействия" id="14">
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="ПериодДействияРасширеннаяПодсказка" id="15"/>
+			<ChildItems>
+				<InputField name="ДатаНачала" id="16">
+					<DataPath>Объект.ДатаНачала</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Действует с</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="18"/>
+				</InputField>
+				<InputField name="ДатаОкончания" id="19">
+					<DataPath>Объект.ДатаОкончания</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>по</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="21"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="ПодсказкаПериода" id="22">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Незаполненная дата не ограничивает срок действия. Вложенный временный график заменяет основной на свой период.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ПодсказкаПериодаКонтекстноеМеню" id="23"/>
+			<ExtendedTooltip name="ПодсказкаПериодаРасширеннаяПодсказка" id="24"/>
+		</LabelDecoration>
+		<Table name="График" id="25">
+			<DataPath>Объект.График</DataPath>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<HeightInTableRows>7</HeightInTableRows>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>MoveUp</ExcludedCommand>
+				<ExcludedCommand>MoveDown</ExcludedCommand>
+				<ExcludedCommand>SortListAsc</ExcludedCommand>
+				<ExcludedCommand>SortListDesc</ExcludedCommand>
+			</CommandSet>
+			<ContextMenu name="ГрафикКонтекстноеМеню" id="26"/>
+			<AutoCommandBar name="ГрафикКоманднаяПанель" id="27"/>
+			<ExtendedTooltip name="ГрафикРасширеннаяПодсказка" id="28"/>
+			<SearchStringAddition name="ГрафикСтрокаПоиска" id="29">
+				<AdditionSource>
+					<Item>График</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ГрафикСтрокаПоискаКонтекстноеМеню" id="30"/>
+				<ExtendedTooltip name="ГрафикСтрокаПоискаРасширеннаяПодсказка" id="31"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ГрафикСостояниеПросмотра" id="32">
+				<AdditionSource>
+					<Item>График</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ГрафикСостояниеПросмотраКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="ГрафикСостояниеПросмотраРасширеннаяПодсказка" id="34"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ГрафикУправлениеПоиском" id="35">
+				<AdditionSource>
+					<Item>График</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ГрафикУправлениеПоискомКонтекстноеМеню" id="36"/>
+				<ExtendedTooltip name="ГрафикУправлениеПоискомРасширеннаяПодсказка" id="37"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="ГрафикДеньНедели" id="38">
+					<DataPath>Объект.График.ДеньНедели</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>День недели</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ГрафикДеньНеделиКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ГрафикДеньНеделиРасширеннаяПодсказка" id="40"/>
+				</InputField>
+				<InputField name="ГрафикВремяНачала" id="41">
+					<DataPath>Объект.График.ВремяНачала</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Начало работы</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="ГрафикВремяНачалаКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ГрафикВремяНачалаРасширеннаяПодсказка" id="43"/>
+				</InputField>
+				<InputField name="ГрафикВремяОкончания" id="44">
+					<DataPath>Объект.График.ВремяОкончания</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Окончание работы</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="ГрафикВремяОкончанияКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ГрафикВремяОкончанияРасширеннаяПодсказка" id="46"/>
+				</InputField>
+			</ChildItems>
+			<Events>
+				<Event name="BeforeAddRow">ГрафикПередНачаломДобавления</Event>
+				<Event name="BeforeDeleteRow">ГрафикПередУдалением</Event>
+			</Events>
+		</Table>
+		<LabelDecoration name="ПодсказкаВыходного" id="47">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Для выходного оставьте оба времени пустыми. В рабочий день заполните начало и окончание работы.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ПодсказкаВыходногоКонтекстноеМеню" id="48"/>
+			<ExtendedTooltip name="ПодсказкаВыходногоРасширеннаяПодсказка" id="49"/>
+		</LabelDecoration>
+		<InputField name="Комментарий" id="50">
+			<DataPath>Объект.Комментарий</DataPath>
+			<ContextMenu name="КомментарийКонтекстноеМеню" id="51"/>
+			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="52"/>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="53">
+			<Type>
+				<v8:Type>cfg:DocumentObject.бит_омни_УстановкаГрафиковРаботыКлиники</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<ConditionalAppearance>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>ГрафикДеньНедели</dcsset:field>
+					</dcsset:item>
+					<dcsset:item>
+						<dcsset:field>ГрафикВремяНачала</dcsset:field>
+					</dcsset:item>
+					<dcsset:item>
+						<dcsset:field>ГрафикВремяОкончания</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Объект.График.ВремяНачала</dcsset:left>
+						<dcsset:comparisonType>NotFilled</dcsset:comparisonType>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Объект.График.ВремяОкончания</dcsset:left>
+						<dcsset:comparisonType>NotFilled</dcsset:comparisonType>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ЦветТекста</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">web:Red</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+				<dcsset:presentation xsi:type="xs:string">Выходной</dcsset:presentation>
+			</dcsset:item>
+		</ConditionalAppearance>
+	</Attributes>
+	<Commands>
+		<Command name="ВыбратьКлинику" id="54">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Клиника</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ВыбратьКлинику</Action>
+		</Command>
+	</Commands>
+</Form>
